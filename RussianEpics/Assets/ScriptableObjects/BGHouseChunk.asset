@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b0c0d41f86a9743add5c7740350bd0, type: 3}
+  m_Name: BGHouseChunk
+  m_EditorClassIdentifier: 
+  Segments:
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 7401525131398245121, guid: 403600aecfd260347a78688acbc0aff2, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 5616381182198632530, guid: 5bdb1126c677e874aae023c980138db2, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 7401525131398245121, guid: 8f9f068814910454083d27d6ea00d640, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 4539077234257024380, guid: 770246e92132d834d95aea81f55b967e, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}

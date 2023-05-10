@@ -35,6 +35,33 @@ public partial class @SchemePlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""d28e47ca-69e3-4ed9-a470-b4cc6807cade"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StartShooting"",
+                    ""type"": ""Button"",
+                    ""id"": ""89497c37-9d48-40f3-a8c1-1c7a4f6d88f4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tap"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""6f046575-bc92-409f-abd8-b7f5dd5683c2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +73,83 @@ public partial class @SchemePlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse and keyboard"",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ccf31106-7858-4c80-a2d5-50c74dbdc6fb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c6153be-4492-467e-9be8-e22f18c97eb4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and keyboard"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6039a218-792a-46a9-b986-ffd792fcb2ed"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de4791a1-d194-4631-b7ca-8a5950457b95"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and keyboard"",
+                    ""action"": ""StartShooting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""442ae595-4e8c-490a-bb74-e9309a303fbf"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""StartShooting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d0ab3f3-cd35-4b58-8c62-96cf08e5dcd5"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and keyboard"",
+                    ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a624a83-54d2-43dd-bef0-b0b4bf5c56ec"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -68,12 +172,20 @@ public partial class @SchemePlayerInput : IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Touch"",
+            ""bindingGroup"": ""Touch"",
+            ""devices"": []
         }
     ]
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_StartShooting = m_Player.FindAction("StartShooting", throwIfNotFound: true);
+        m_Player_Tap = m_Player.FindAction("Tap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -134,11 +246,17 @@ public partial class @SchemePlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_StartShooting;
+    private readonly InputAction m_Player_Tap;
     public struct PlayerActions
     {
         private @SchemePlayerInput m_Wrapper;
         public PlayerActions(@SchemePlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @StartShooting => m_Wrapper.m_Player_StartShooting;
+        public InputAction @Tap => m_Wrapper.m_Player_Tap;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -151,6 +269,15 @@ public partial class @SchemePlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @StartShooting.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartShooting;
+                @StartShooting.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartShooting;
+                @StartShooting.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartShooting;
+                @Tap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTap;
+                @Tap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTap;
+                @Tap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTap;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -158,6 +285,15 @@ public partial class @SchemePlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
+                @StartShooting.started += instance.OnStartShooting;
+                @StartShooting.performed += instance.OnStartShooting;
+                @StartShooting.canceled += instance.OnStartShooting;
+                @Tap.started += instance.OnTap;
+                @Tap.performed += instance.OnTap;
+                @Tap.canceled += instance.OnTap;
             }
         }
     }
@@ -171,8 +307,20 @@ public partial class @SchemePlayerInput : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_MouseandkeyboardSchemeIndex];
         }
     }
+    private int m_TouchSchemeIndex = -1;
+    public InputControlScheme TouchScheme
+    {
+        get
+        {
+            if (m_TouchSchemeIndex == -1) m_TouchSchemeIndex = asset.FindControlSchemeIndex("Touch");
+            return asset.controlSchemes[m_TouchSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnJump(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+        void OnStartShooting(InputAction.CallbackContext context);
+        void OnTap(InputAction.CallbackContext context);
     }
 }

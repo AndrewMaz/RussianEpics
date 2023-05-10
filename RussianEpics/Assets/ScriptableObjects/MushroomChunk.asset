@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b0c0d41f86a9743add5c7740350bd0, type: 3}
+  m_Name: MushroomChunk
+  m_EditorClassIdentifier: 
+  Segments:
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 8061070731823740188, guid: 39b595596497d9f46bdfa1d14c475beb, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 5903093355699249088, guid: 2b7b19e9b59453249b0b4e5faaa29c87, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 6739568672982260937, guid: 8c300e27a9d75a34ca375cc9315f076b, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}

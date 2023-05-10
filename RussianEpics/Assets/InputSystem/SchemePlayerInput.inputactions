@@ -13,6 +13,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "d28e47ca-69e3-4ed9-a470-b4cc6807cade",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartShooting",
+                    "type": "Button",
+                    "id": "89497c37-9d48-40f3-a8c1-1c7a4f6d88f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Tap",
+                    "type": "PassThrough",
+                    "id": "6f046575-bc92-409f-abd8-b7f5dd5683c2",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -24,6 +51,83 @@
                     "processors": "",
                     "groups": "Mouse and keyboard",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ccf31106-7858-4c80-a2d5-50c74dbdc6fb",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c6153be-4492-467e-9be8-e22f18c97eb4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Mouse and keyboard",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6039a218-792a-46a9-b986-ffd792fcb2ed",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de4791a1-d194-4631-b7ca-8a5950457b95",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Mouse and keyboard",
+                    "action": "StartShooting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "442ae595-4e8c-490a-bb74-e9309a303fbf",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "StartShooting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d0ab3f3-cd35-4b58-8c62-96cf08e5dcd5",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and keyboard",
+                    "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a624a83-54d2-43dd-bef0-b0b4bf5c56ec",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -46,6 +150,11 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "Touch",
+            "bindingGroup": "Touch",
+            "devices": []
         }
     ]
 }

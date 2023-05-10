@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Assets.Scripts.Interfaces
 {
     public interface IDamageable
     {
-        public void GetDamage(int damage);
+        public void GetDamage(int damage, object sender);
     }
 }
