@@ -1,5 +1,6 @@
 using Abstracts;
 using JetBrains.Annotations;
+using System;
 using UnityEngine;
 
 public class BossYaga : Enemy
@@ -9,11 +10,13 @@ public class BossYaga : Enemy
     [SerializeField] private float _invTime = 1f;
     [SerializeField] private BossShield _bossShield;
 
+    public event Action<int> IsDamaged;
+    public event Action IsDead;
+
     private float _timer;
     private bool _isInvulnerable;
 
     private Motor _motor;
-
     public int Health 
     { 
         get => _health; 
@@ -23,6 +26,7 @@ public class BossYaga : Enemy
             if (_health <= 0)
             {
                 _health = 0;
+                IsDead?.Invoke();
                 gameObject.SetActive(false);
             }
             else
@@ -58,12 +62,13 @@ public class BossYaga : Enemy
     {
         if (_isInvulnerable) return;
         base.GetDamage(damage, sender);
-        Health--;
+        Health -= damage;
+        IsDamaged?.Invoke(Health);
     }
 
     private void Move()
     {
-        Vector2 offset = new(Random.Range(-2f, 4f), Random.Range(-1f, 3f));
+        Vector2 offset = new(UnityEngine.Random.Range(-2f, 4f), UnityEngine.Random.Range(-1f, 3f));
         _model.position += new Vector3(offset.x, offset.y, 0f);
         capsuleCollider.offset += offset;
     }

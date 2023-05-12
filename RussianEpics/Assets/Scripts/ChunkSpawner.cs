@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ChunkSpawner : MonoBehaviour
 {
-    [SerializeField] private List<Chunk> chunks;
-    [SerializeField] private Chunk[] bosschunks;
+    public List<Chunk> chunks;
+    public Chunk[] bosschunks;
     [SerializeField] private ChunkEnd chunkEnd;
     [SerializeField] private Transform spawnObject;
 
@@ -28,13 +28,11 @@ public class ChunkSpawner : MonoBehaviour
        
         _chunkFeed.Enqueue(bosschunks[_currentStage]);
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.TryGetComponent(out ChunkEnd _))
             SpawnNextChunk();
     }
-
     private void SpawnNextChunk()
     {
         if(_chunkFeed.Count == 0)

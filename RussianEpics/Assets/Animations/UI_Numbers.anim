@@ -1937,16 +1937,35 @@ AnimationClip:
     path: LogoBackground (1)
     classID: 1
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.a
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - time: 0.35
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 1.05
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - time: 2.4333334
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     attribute: m_Sprite
     path: LogoBackground/LogoImage/Number1Image
     classID: 114
@@ -1955,70 +1974,70 @@ AnimationClip:
     - time: 0
       value: {fileID: 0}
     - time: 1.4
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - time: 1.75
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 2.4333334
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - time: 3.1333334
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     attribute: m_Sprite
     path: LogoBackground/LogoImage/Number3Image
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - time: 2.4666667
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 2.7833333
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     attribute: m_Sprite
     path: LogoBackground/LogoImage/Number0Image
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 0.7
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - time: 1.05
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 2.4333334
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     attribute: m_Sprite
     path: LogoBackground/LogoImage/Number2Image
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - time: 2.7833333
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 3.1333334
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     attribute: m_Sprite
     path: LogoBackground/LogoImage/Number6Image
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 2.7833333
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - time: 3.1333334
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 3.4833333
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     attribute: m_Sprite
     path: LogoBackground/LogoImage/Number7Image
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
+      value: {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
     - time: 3.1333334
-      value: {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+      value: {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     attribute: m_Sprite
     path: LogoBackground/LogoImage/Number8Image
     classID: 114
@@ -2394,32 +2413,39 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 0
+      attribute: 304273561
+      script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+      typeID: 114
+      customType: 0
+      isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
     - {fileID: 0}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: d595531252486144fb93201f81fa39dd, type: 3}
-    - {fileID: 21300000, guid: 1fd1cf849434da547882e9c18c43d803, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 1adf7b5dff8084a4da7973594f0847ad, type: 3}
+    - {fileID: 21300000, guid: 774f370a213411e468e9e00d1125ff3b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -5349,6 +5375,25 @@ AnimationClip:
     path: LogoBackground (1)
     classID: 1
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.a
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2

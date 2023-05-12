@@ -21,7 +21,8 @@ namespace Abstracts
                 _stage = value;
                 if (sprites.Count() < value) 
                     return;
-
+                if (_spriteToChange == null)
+                    return;
                 _spriteToChange.sprite = sprites[_stage];
             }
         }

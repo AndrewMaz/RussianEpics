@@ -41,6 +41,10 @@ public class PlayerHUD : MonoBehaviour, IPlayerInput
     private void Damaged(int damage)
     {
         currenntHealth -= damage;
+        if (currenntHealth > maxHealth)
+        {
+            currenntHealth = maxHealth;
+        }
         _slider.value = currenntHealth / maxHealth;
     }
 }
