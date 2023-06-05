@@ -14,6 +14,7 @@ public class ExplosionArrow : Arrow
 
         isRotating = false;
         _rb.bodyType = RigidbodyType2D.Static;
+        _damageArea.gameObject.SetActive(false);
 
         explosionDamageArea.IsDamageDealt += OnIsDamageDealt;
     }

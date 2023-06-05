@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Bootstrapper : MonoBehaviour
 {
+    [SerializeField] private List<Chunk> _chunks;
+    [SerializeField] private Chunk[] _bosschunks;
+
     private MainMenu _mainMenu;
     private GameplayEntryPoint _gameplayEntryPoint;
 
@@ -20,32 +23,34 @@ public class Bootstrapper : MonoBehaviour
         //main Menu
         _mainMenu = FindObjectOfType<MainMenu>();
         _mainMenu.startButton.onClick.AddListener(StartGame);
-        _mainMenu.IsWeaponChanged += ChangeWeapon;
-        //Gameplay Entry Point
+        _mainMenu.IsPlayerChangedToBow += ChangePlayerToBow;
+        _mainMenu.IsPlayerChangedToHammer += ChangePlayerToHammer;
+        //Entry point
         _gameplayEntryPoint = FindObjectOfType<GameplayEntryPoint>();
     }
     private void OnDisable()
     {
-        _mainMenu.IsWeaponChanged -= ChangeWeapon;
+        _mainMenu.IsPlayerChangedToBow -= ChangePlayerToBow;
+        _mainMenu.IsPlayerChangedToHammer -= ChangePlayerToHammer;
     }
     private void StartGame()
     {
         _mainMenu.gameObject.SetActive(false);
+        _gameplayEntryPoint._spawner.chunks = _chunks;
+        _gameplayEntryPoint._spawner.bosschunks = _bosschunks;
+        _gameplayEntryPoint.Initialize();
+        _gameplayEntryPoint._bowPlayer.Animator.SetBool("start", false);
+        _gameplayEntryPoint._hammerPlayer.Animator.SetBool("start", false);
+        _gameplayEntryPoint._speedControlService.ResetSpeed();
     }
-    private void ChangeWeapon()
+    private void ChangePlayerToBow()
     {
-        _gameplayEntryPoint._playerWeapon = _mainMenu.Weapon;
-        if (_gameplayEntryPoint._playerWeapon is Quiver)
-        {
-            _gameplayEntryPoint._hammerModel.SetActive(false);
-            _gameplayEntryPoint._animator.SetBool("isQuiver", true);
-            _gameplayEntryPoint._animator.SetBool("isHammer", false);
-        }
-        if (_gameplayEntryPoint._playerWeapon is Hammer)
-        {
-            _gameplayEntryPoint._hammerModel.SetActive(true);
-            _gameplayEntryPoint._animator.SetBool("isQuiver", false);
-            _gameplayEntryPoint._animator.SetBool("isHammer", true);
-        }
+        _gameplayEntryPoint._bowPlayer.gameObject.SetActive(true);
+        _gameplayEntryPoint._hammerPlayer.gameObject.SetActive(false);
+    }
+    private void ChangePlayerToHammer()
+    {
+        _gameplayEntryPoint._bowPlayer.gameObject.SetActive(false);
+        _gameplayEntryPoint._hammerPlayer.gameObject.SetActive(true);
     }
 }

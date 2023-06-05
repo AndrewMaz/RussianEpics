@@ -5,13 +5,13 @@ public class BossCharacteristicsService
     public event Action<BossYaga> IsVisible;
     public event Action IsDead;
 
-    BossChecker _bossChecker;
+    EnemyChecker _enemyChecker;
 
     BossYaga _boss;
-    public BossCharacteristicsService(BossChecker bossChecker)
+    public BossCharacteristicsService(EnemyChecker enemyChecker)
     {
-        _bossChecker = bossChecker;
-        _bossChecker.IsBossShowed += ActivateUI;
+        _enemyChecker = enemyChecker;
+        _enemyChecker.IsBossShowed += ActivateUI;
     }
 
     public void GetDamage(int health)
@@ -28,12 +28,12 @@ public class BossCharacteristicsService
     public void DeactivateUI()
     {
         IsDead?.Invoke();
-        _bossChecker.gameObject.SetActive(true);
+        _enemyChecker.gameObject.SetActive(true);
         _boss.IsDamaged -= GetDamage;
         _boss.IsDead -= DeactivateUI;
     }
     ~BossCharacteristicsService()
     {
-        _bossChecker.IsBossShowed -= ActivateUI;
+        _enemyChecker.IsBossShowed -= ActivateUI;
     }
 }

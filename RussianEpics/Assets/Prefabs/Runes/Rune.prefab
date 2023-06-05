@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1416785940398734670}
   - component: {fileID: 8892246055939754177}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4963668043242866536}
   - component: {fileID: 5553083163382945082}
   - component: {fileID: 1243298179282451720}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Rune
   m_TagString: Untagged
   m_Icon: {fileID: 0}

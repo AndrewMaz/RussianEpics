@@ -410,7 +410,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111230841467454083}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2b04e3e13b032347b91055f66af29e0, type: 3}
   m_Name: 
@@ -418,6 +418,7 @@ MonoBehaviour:
   _atlas: {fileID: 0}
   _spriteToChange: {fileID: 0}
   sprites: []
+  points: 100
   _damageArea: {fileID: 3111230840006048004}
   _damage: 100
   _animator: {fileID: 3111230840200975374}

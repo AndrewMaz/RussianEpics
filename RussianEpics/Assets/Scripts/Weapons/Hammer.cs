@@ -7,7 +7,9 @@ using UnityEngine;
 public class Hammer : Weapon
 {
     [SerializeField] private DamageArea _damageArea;
-    [SerializeField] Hammer _hammerPrefab;
+    [SerializeField] private DamageArea _shatterDamageArea;
+    [SerializeField] private Hammer _hammerPrefab;
+    [SerializeField] private GameObject _shatter;
 
     private readonly Queue<WeaponRune> _hammer = new();
 
@@ -17,6 +19,8 @@ public class Hammer : Weapon
 
     protected Rigidbody2D _rb;
 
+    private bool _isThrowCD = false;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -24,13 +28,20 @@ public class Hammer : Weapon
     private void OnEnable()
     {
         _damageArea.IsDamageDealt += OnIsDamageDealt;
+        if (_shatterDamageArea != null)
+        {
+            _shatterDamageArea.IsDamageDealt += OnIsDamageDealt;
+            _shatter.SetActive(false);
+        }
     }
-
     private void OnDisable()
     {
         _damageArea.IsDamageDealt -= OnIsDamageDealt;
+        if (_shatterDamageArea != null)
+        {
+            _shatterDamageArea.IsDamageDealt -= OnIsDamageDealt;
+        }
     }
-
     protected virtual void OnIsDamageDealt(IDamageable target)
     {
         target.GetDamage(damage, this);
@@ -51,15 +62,12 @@ public class Hammer : Weapon
             switch (arrowRune)
             {
                 //hammer rune attacks
-                case ExplosionRune rune:
-                    //shatter.SetActive(true);
-                    if (force == 1)
-                    {
-                        ThrowHammer(firePosition);
-                    }
+                case ExplosionRune _:
+                    _shatter.SetActive(true);
+                    StartCoroutine(ShatterLifeTime());
                     break;
 
-                case TripleShotRune rune:
+                case TripleShotRune _:
                     if (force == 1)
                     {
                         ThrowHammer(firePosition + Vector2.up);
@@ -71,9 +79,10 @@ public class Hammer : Weapon
         }
         else
         {
-            if (force == 1)
+            if (force == 1 && !_isThrowCD)
             {
                 ThrowHammer(firePosition);
+                StartCoroutine(ThrowCD());
             }
         }
     }
@@ -96,5 +105,18 @@ public class Hammer : Weapon
 
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, angle - angleOffset);
         _rb.AddForce(fireVector.normalized * Force);
+    }
+    private IEnumerator ShatterLifeTime()
+    {
+        yield return new WaitForSeconds(1f);
+
+        _shatter.SetActive(false);
+    }
+    private IEnumerator ThrowCD()
+    {
+        _isThrowCD = true;
+        yield return new WaitForSeconds(5f);
+
+        _isThrowCD = false;
     }
 }

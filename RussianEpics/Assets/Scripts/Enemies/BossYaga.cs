@@ -16,40 +16,35 @@ public class BossYaga : Enemy
     private float _timer;
     private bool _isInvulnerable;
 
-    private Motor _motor;
-    public int Health 
-    { 
-        get => _health; 
-        private set 
-        { 
+    //X (-2, 4);
+    //Y (-1, 3);
+
+    private CapsuleCollider2D capsuleCollider;
+    public int Health
+    {
+        get => _health;
+        private set
+        {
             _health = value;
             if (_health <= 0)
             {
                 _health = 0;
                 IsDead?.Invoke();
+                AddScore();
                 gameObject.SetActive(false);
             }
             else
             {
                 _isInvulnerable = true;
                 Move();
-            } 
-        } 
+            }
+        }
     }
-
-    //X (-2, 4);
-    //Y (-1, 3);
-
-    private CapsuleCollider2D capsuleCollider;
-
-    private void Awake()
+    private new void Awake()
     {
-        _motor = GetComponent<Motor>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-
         _timer = _invTime;
     }
-
     private void Update()
     {
         if (_isInvulnerable)
@@ -57,11 +52,10 @@ public class BossYaga : Enemy
             MakeInvulnerable();
         }
     }
-
     public override void GetDamage(int damage, object sender)
     {
         if (_isInvulnerable) return;
-        base.GetDamage(damage, sender);
+        _animator.SetTrigger("takeDamage");
         Health -= damage;
         IsDamaged?.Invoke(Health);
     }
@@ -76,6 +70,8 @@ public class BossYaga : Enemy
     public void Apply()
     {
         _motor.enabled = true;
+        capsuleCollider.enabled = true;
+        _bossShield.gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

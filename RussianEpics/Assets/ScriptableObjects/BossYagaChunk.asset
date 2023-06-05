@@ -20,6 +20,12 @@ MonoBehaviour:
     - {fileID: 3111230841467454081, guid: 575e6711a1d587040858ec6686d2780d, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 5903093355699249088, guid: 2b7b19e9b59453249b0b4e5faaa29c87, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:
@@ -38,6 +44,16 @@ MonoBehaviour:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 5903093355699249088, guid: aba168b8c8b12bb4ca26b415576c7bda, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:

@@ -1,73 +1,88 @@
 using Assets.Scripts.Interfaces.Infrastructure;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour, IPlayerInput
 {
     [Header("Throw timings")]
-    [SerializeField] private float minMultiplier = 0.1f;
+    [SerializeField] private float minMultiplier = 0f;
     [SerializeField] private float maxMultiplier = 1f;
+    [Space]
+    [SerializeField] private Transform _trajectoryTransform;
 
     private float _multiplierTimer;
     private bool _isShootStarted = false;
     private SchemePlayerInput _input;
     private Camera _camera;
     private PlayerHUD _hud;
+    private Trajectory _trajectory;
+
+    const float _boundaryX = -17f;
 
     public event Action IsJumped;
     public event Action<Vector2, float> IsShot;
     public event Action IsStance;
 
-    public void Initialize(Camera camera, PlayerHUD playerHUD)
+    public void Initialize(Camera camera, PlayerHUD playerHUD, Trajectory trajectory)
     {
         _hud = playerHUD;
         _camera = camera;
+        _trajectory = trajectory;
+        enabled = true;
     }
-
     private void Awake()
     {
         _input = new SchemePlayerInput();
         _multiplierTimer = 0f;
     }
-
     private void Update()
     {
         if (_isShootStarted)
+        {
             _multiplierTimer += Time.deltaTime;
+            if (_trajectory.gameObject.activeInHierarchy)
+            {
+                _trajectory.UpdateDots(new Vector3(_trajectoryTransform.position.x, _trajectoryTransform.position.y, _trajectoryTransform.position.z),
+                    _multiplierTimer * 70f * (_camera.ScreenToWorldPoint(_input.Player.Tap.ReadValue<Vector2>()) - _trajectoryTransform.position).normalized);
+            }
+        }
+        _hud.UpdatePowerSlider(_multiplierTimer);
+
         if (_multiplierTimer >= 1f)
             Shoot();
     }
-
     private void OnEnable()
     {
         _input.Enable();
-        _hud.IsJumped += IsJumped;
+        _hud.IsJumped += () => IsJumped?.Invoke();
         _input.Player.Jump.performed += Jump;
         _input.Player.Fire.performed += Fire;
         _input.Player.StartShooting.performed += StartShooting;
     }
-
     private void OnDisable()
     {
         _input.Disable();
-        _hud.IsJumped -= IsJumped;
+        _hud.IsJumped -= () => IsJumped?.Invoke();
         _input.Player.Jump.performed -= Jump;
         _input.Player.Fire.performed -= Fire;
         _input.Player.StartShooting.performed -= StartShooting;
     }
-
     private void StartShooting(InputAction.CallbackContext context)
     {
+        if (_camera.ScreenToWorldPoint(_input.Player.Tap.ReadValue<Vector2>()).x < _boundaryX) return;
         _isShootStarted = true;
         IsStance?.Invoke();
+        if (_trajectory != null)
+        {
+            _trajectory.Show();
+        }
     }
-
     private void Fire(InputAction.CallbackContext context)
     {
         Shoot();
     }
-
     private void Shoot()
     {
         var targetPosition = _camera.ScreenToWorldPoint(_input.Player.Tap.ReadValue<Vector2>());
@@ -75,9 +90,13 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
 
         _isShootStarted = false;
         _multiplierTimer = 0f;
+        if (_trajectory != null)
+        {
+            _trajectory.Hide();
+        }
 
         IsShot?.Invoke(targetPosition, timing);
     }
-    private void Jump(InputAction.CallbackContext context) => IsJumped?.Invoke();
 
+    private void Jump(InputAction.CallbackContext context) => IsJumped?.Invoke();
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8696544092611048600}
   - component: {fileID: 7670612885574926848}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: HealBG02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2590245996920572734}
   - component: {fileID: 4200733250862946821}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: HealBG03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8660591806472928493}
   - component: {fileID: 2114792305280670307}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: HealBG04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 2562015439415784228}
   - component: {fileID: 7736317347284028211}
   - component: {fileID: 9075989204224172559}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: TripleShotRune
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5036882231631607427}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1279a8670f206024b86c1afcaeaa1517, type: 3}
   m_Name: 
@@ -346,6 +346,7 @@ MonoBehaviour:
   _atlas: {fileID: 0}
   _spriteToChange: {fileID: 0}
   sprites: []
+  points: 0
   arrow: {fileID: 5328496452051969026, guid: 0a085ad8629b3544bab863b39629d088, type: 3}
 --- !u!95 &9075989204224172559
 Animator:
@@ -377,7 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8672995517686544224}
   - component: {fileID: 6888163046007087724}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9053990300725264916}
   - component: {fileID: 6607232253178370192}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: HealBG01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

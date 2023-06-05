@@ -15,26 +15,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Sprite _secondImage;
     [SerializeField] private Sprite _vibrationOff;
     [SerializeField] private Sprite _vibrationOn;
-    [SerializeField] private Weapon _quiver;
-    [SerializeField] private Weapon _hammer;
     
     public Button startButton;
 
-    private Weapon _weapon;
     private float _changeTime;
     private bool _isVibrationOff = true;
 
-    public event Action IsWeaponChanged;
-    public Weapon Weapon { 
-        get => _weapon;
-        set
-        {
-            if (value != null) 
-            {
-                _weapon = value;
-                IsWeaponChanged?.Invoke();
-            }
-        } }
+    public event Action IsPlayerChangedToBow;
+    public event Action IsPlayerChangedToHammer;
 
     private void Awake()
     {
@@ -42,9 +30,15 @@ public class MainMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) { _animator.SetTrigger("continue"); }
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            _animator.SetBool("isSkip", true);
+        }
 
-        if (Input.touchCount > 0) { _animator.SetTrigger("continue"); }
+        if (Input.touchCount > 0) 
+        { 
+            _animator.SetBool("isSkip", true);
+        }
 
         _changeTime -= Time.deltaTime;
         if (_changeTime > 0) return;
@@ -80,12 +74,12 @@ public class MainMenu : MonoBehaviour
     {
         _animator.SetTrigger("characterSelection");
     }
-    public void ChangeWeaponQuiver()
+    public void ChangeToBowPlayer()
     {
-        Weapon = _quiver;
+        IsPlayerChangedToBow?.Invoke();
     }
-    public void ChangeWeaponHammer()
+    public void ChangeToHammerPlayer()
     {
-        Weapon = _hammer;
+        IsPlayerChangedToHammer?.Invoke();
     }
 }

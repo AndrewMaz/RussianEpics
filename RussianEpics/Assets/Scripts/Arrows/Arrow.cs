@@ -2,10 +2,10 @@ using Assets.Scripts.Interfaces;
 using SpawnElements;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Motor))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Arrow : MonoBehaviour, IDamageable
 {
-    [SerializeField] private DamageArea _damageArea;
+    [SerializeField] protected DamageArea _damageArea;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _deflectChance;
 
@@ -14,7 +14,6 @@ public class Arrow : MonoBehaviour, IDamageable
     protected bool isRotating = true;
 
     protected Rigidbody2D _rb;
-
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -61,24 +60,24 @@ public class Arrow : MonoBehaviour, IDamageable
 
     public void GetDamage(int damage, object sender)
     {
-        if (sender is Ghoul && Random.value < _deflectChance)
+        if ((sender is Ghoul && Random.value < _deflectChance/100) || (sender is Kolobok && _deflectChance >= 0))
         {
             Deflect();
         }
     }
-
     public void Deflect()
     {
         _rb.velocity = Vector2.zero;
         _animator.SetTrigger("deflected");
+        _damageArea.gameObject.SetActive(false);
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Floor _))
         {
             _rb.bodyType = RigidbodyType2D.Static;
             isRotating = false;
+            _damageArea.gameObject.SetActive(false);
 
             return;
         }

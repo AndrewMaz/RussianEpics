@@ -271,8 +271,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2322853195216153670}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 883cfb62e87d29747b0ec3b03278d310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _atlas: {fileID: 0}
+  _spriteToChange: {fileID: 0}
+  sprites: []
+  points: 50

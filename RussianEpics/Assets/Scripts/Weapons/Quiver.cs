@@ -45,7 +45,7 @@ public class Quiver : Weapon
 
     private void InstantiateArrow(Vector2 firePosition, float force, GameObject arrowPrefab)
     {
-        var instance = Instantiate(arrowPrefab);
+        var instance = Instantiate(arrowPrefab, gameObject.transform.position, gameObject.transform.rotation);
         if (instance.TryGetComponent(out Arrow arrow))
             arrow.Fly(transform.position, firePosition, force);
     }
