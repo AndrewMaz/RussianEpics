@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05b0c0d41f86a9743add5c7740350bd0, type: 3}
-  m_Name: SlowRuneChunk
+  m_Name: EventKolobokChunk
   m_EditorClassIdentifier: 
   Segments:
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
-    - {fileID: 6605027189577230866, guid: 9d6bd5cbaabebe142b2e01cbff8abb36, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:
@@ -40,14 +39,24 @@ MonoBehaviour:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
-    - {fileID: 87085208013052172, guid: 3b3e4f10f4ce8dd4f88afd1a0aa2b05f, type: 3}
+    - {fileID: 7561228125887572928, guid: 619ae590cbea6da41b0d23f0755bcac1, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
-    - {fileID: 87085208013052172, guid: 3b3e4f10f4ce8dd4f88afd1a0aa2b05f, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
-    - {fileID: 87085208013052172, guid: 3b3e4f10f4ce8dd4f88afd1a0aa2b05f, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}

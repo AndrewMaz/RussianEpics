@@ -84,11 +84,11 @@ public class ChunkSpawner : MonoBehaviour
         }
         
         var instantiate1 = Instantiate(chunkEnd);
-/*        if (IsGameStarted)
+        if (IsGameStarted)
         {
             instantiate1.GetComponent<SpawnElement>().Initialize(_scoreSystem, _speedControlService);
-        }*/
-        
+        }
+
         instantiate1.transform.position =
             new Vector3(position.x + x + 1, position.y, 0.0f);
     }

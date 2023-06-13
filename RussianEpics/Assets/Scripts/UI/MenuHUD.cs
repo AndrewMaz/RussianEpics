@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,10 +13,14 @@ public class MenuHUD : MonoBehaviour
 
     PlayerCharacteristicsService[] _playerCharacteristicsService;
     SpeedControlService _speedControlService;
+
+    public event Action IsRestart;
+    public event Action IsQuit;
     public void Initialize(PlayerCharacteristicsService[] playerCharacteristicsService, SpeedControlService speedControlService)
     {
         _playerCharacteristicsService = playerCharacteristicsService;
         _speedControlService = speedControlService;
+        _menuButton.gameObject.SetActive(true);
         enabled = true;
     }
     private void OnEnable()
@@ -40,10 +46,8 @@ public class MenuHUD : MonoBehaviour
     }
     public void Restart()
     {
-        /*        Time.timeScale = 1.0f;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);*/
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(0);
+        IsRestart?.Invoke();
     }
     public void Resume()
     {
@@ -53,7 +57,7 @@ public class MenuHUD : MonoBehaviour
     public void Quit()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(0);
+        IsQuit?.Invoke();
     }
     private void ShowDeathUI()
     {

@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111230840006048006}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111230840200975361}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.81, y: 3.09, z: 0}
+  m_LocalPosition: {x: -1, y: 3.09, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -306,7 +306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111230840519489500}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -425,6 +425,7 @@ MonoBehaviour:
   _health: 3
   _model: {fileID: 3111230840200975360}
   _invTime: 3
+  newSpeed: 10
   _bossShield: {fileID: 4200691891383101649}
 --- !u!114 &3111230841467454082
 MonoBehaviour:
@@ -433,12 +434,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111230841467454083}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfd8bf458f2c60c47b900fe89336dcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
+  _speed: 3
 --- !u!50 &3111230841467454094
 Rigidbody2D:
   serializedVersion: 4
@@ -473,6 +474,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -12.17, y: 3.38}
-  m_Size: {x: 1.77, y: 2.7}
+  m_Offset: {x: -1.34, y: 3.38}
+  m_Size: {x: 1.75, y: 2.6999998}
   m_Direction: 0

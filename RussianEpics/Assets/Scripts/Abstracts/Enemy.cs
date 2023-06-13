@@ -34,7 +34,6 @@ namespace Abstracts
         public virtual void GetDamage(int damage, object sender)
         {
             _animator.SetTrigger("takeDamage");
-            StartCoroutine(DeathAnimation());
             _rb.bodyType = RigidbodyType2D.Static;
             _capsuleCollider.offset += Vector2.down;
             AddScore();
@@ -42,11 +41,6 @@ namespace Abstracts
         public virtual void React()
         {
 
-        }
-        private IEnumerator DeathAnimation()
-        {
-            yield return new WaitForSeconds(1f);
-            _animator.SetBool("isAlive", false);
         }
     }
 }

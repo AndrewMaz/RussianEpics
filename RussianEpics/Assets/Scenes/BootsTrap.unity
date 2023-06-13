@@ -168,14 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chunks:
-  - {fileID: 11400000, guid: 662c31e225d0a71498e5013c060c80de, type: 2}
-  - {fileID: 11400000, guid: a4c0440ae007f304988da0e339b26cc1, type: 2}
-  - {fileID: 11400000, guid: f0f808593efd7de4eb400ec9680419da, type: 2}
-  - {fileID: 11400000, guid: 6987be3eb15c75345840fa45309fe2c8, type: 2}
   - {fileID: 11400000, guid: 29857a637827f4748a3808a1a3e0427e, type: 2}
-  - {fileID: 11400000, guid: 37678cfdfa615214892c031f42b63807, type: 2}
-  - {fileID: 11400000, guid: 9cdea4740a831d743a8a8d2b027d59d0, type: 2}
-  - {fileID: 11400000, guid: a77106f9a66393146a49af956b557bd3, type: 2}
-  - {fileID: 11400000, guid: 1081c2a8f5088d046b0cf9d349cad2b1, type: 2}
+  - {fileID: 11400000, guid: 381c16bb1d24da346bac1f7f92172f12, type: 2}
   _bosschunks:
   - {fileID: 11400000, guid: 9143324611d87104dab422f053214b76, type: 2}

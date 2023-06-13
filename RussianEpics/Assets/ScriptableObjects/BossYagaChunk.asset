@@ -15,6 +15,7 @@ MonoBehaviour:
   Segments:
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 7561228125887572928, guid: 0cf01e77a80a5624eb5dafa77a5bd9e2, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
     - {fileID: 3111230841467454081, guid: 575e6711a1d587040858ec6686d2780d, type: 3}

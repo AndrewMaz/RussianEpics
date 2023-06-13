@@ -13,11 +13,13 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
     [SerializeField] private Transform _trajectoryTransform;
 
     private float _multiplierTimer;
-    private bool _isShootStarted = false;
+    private bool _isShootStarted = false, _isStanding;
+
     private SchemePlayerInput _input;
     private Camera _camera;
     private PlayerHUD _hud;
     private Trajectory _trajectory;
+    private SpeedControlService _speedControlService;
 
     const float _boundaryX = -17f;
 
@@ -25,11 +27,12 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
     public event Action<Vector2, float> IsShot;
     public event Action IsStance;
 
-    public void Initialize(Camera camera, PlayerHUD playerHUD, Trajectory trajectory)
+    public void Initialize(Camera camera, PlayerHUD playerHUD, Trajectory trajectory, SpeedControlService speedControlService)
     {
         _hud = playerHUD;
         _camera = camera;
         _trajectory = trajectory;
+        _speedControlService = speedControlService;
         enabled = true;
     }
     private void Awake()
@@ -39,6 +42,8 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
     }
     private void Update()
     {
+        if (_isStanding) return;
+
         if (_isShootStarted)
         {
             _multiplierTimer += Time.deltaTime;
@@ -55,6 +60,11 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
     }
     private void OnEnable()
     {
+        if (_speedControlService!= null) 
+        {
+            _speedControlService.OnSpeedChange += ChangeControls;
+        }
+
         _input.Enable();
         _hud.IsJumped += () => IsJumped?.Invoke();
         _input.Player.Jump.performed += Jump;
@@ -63,6 +73,11 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
     }
     private void OnDisable()
     {
+        if (_speedControlService != null)
+        {
+            _speedControlService.OnSpeedChange -= ChangeControls;
+        }
+
         _input.Disable();
         _hud.IsJumped -= () => IsJumped?.Invoke();
         _input.Player.Jump.performed -= Jump;
@@ -71,6 +86,8 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
     }
     private void StartShooting(InputAction.CallbackContext context)
     {
+        if (_isStanding) return;
+
         if (_camera.ScreenToWorldPoint(_input.Player.Tap.ReadValue<Vector2>()).x < _boundaryX) return;
         _isShootStarted = true;
         IsStance?.Invoke();
@@ -99,4 +116,16 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
     }
 
     private void Jump(InputAction.CallbackContext context) => IsJumped?.Invoke();
+
+    private void ChangeControls()
+    {
+        if (_speedControlService.Multiply == 0)
+        {
+            _isStanding = true;
+        }
+        else
+        {
+            _isStanding = false;
+        }
+    }
 }

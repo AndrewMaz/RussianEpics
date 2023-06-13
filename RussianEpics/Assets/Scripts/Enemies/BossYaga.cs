@@ -8,6 +8,7 @@ public class BossYaga : Enemy
     [SerializeField] private int _health = 5;
     [SerializeField] private Transform _model;
     [SerializeField] private float _invTime = 1f;
+    [SerializeField] private float newSpeed = 10f;
     [SerializeField] private BossShield _bossShield;
 
     public event Action<int> IsDamaged;
@@ -69,9 +70,15 @@ public class BossYaga : Enemy
 
     public void Apply()
     {
-        _motor.enabled = true;
+        _motor.Speed = newSpeed;
         capsuleCollider.enabled = true;
         _bossShield.gameObject.SetActive(false);
+    }
+
+    public override void React()
+    {
+        _motor.Speed = 0f;
+        gameObject.transform.position += Vector3.left * 2f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

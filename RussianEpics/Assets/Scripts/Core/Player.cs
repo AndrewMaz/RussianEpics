@@ -16,13 +16,15 @@ public class Player : MonoBehaviour, IDamageable
 
     private PlayerCharacteristicsService _playerCharacteristics;
     private IPlayerInput _input;
+    private SpeedControlService _speedControlService;
 
     public Animator Animator { get { return _animator; } }
 
-    public void Initialize(IPlayerInput input, PlayerCharacteristicsService playerCharacteristics)
+    public void Initialize(IPlayerInput input, PlayerCharacteristicsService playerCharacteristics, SpeedControlService speedControlService)
     {
         _input = input;
         _playerCharacteristics = playerCharacteristics;
+        _speedControlService = speedControlService;
         enabled = true;
     }
     private void Awake()
@@ -31,6 +33,11 @@ public class Player : MonoBehaviour, IDamageable
     }
     private void OnEnable()
     {
+        if (_speedControlService != null)
+        {
+            _speedControlService.OnSpeedChange += ChangeSpeed;
+        }
+
         _input.IsStance += Stance;
         _input.IsShot += Fire;
         _input.IsJumped += Jump;
@@ -39,6 +46,11 @@ public class Player : MonoBehaviour, IDamageable
     }
     private void OnDisable()
     {
+        if (_speedControlService != null)
+        {
+            _speedControlService.OnSpeedChange -= ChangeSpeed;
+        }
+
         _input.IsStance -= Stance;
         _input.IsShot -= Fire;
         _input.IsJumped -= Jump;
@@ -64,10 +76,12 @@ public class Player : MonoBehaviour, IDamageable
     private void Jump()
     {  
         if (IsGrounded)
+        {
             _rb.AddForce(new Vector2(0, _jumpForce));
+            _animator.SetTrigger("jump");
+        }
     }
     private bool IsGrounded => Physics2D.Raycast(transform.position, Vector2.down, _rayDistance, _floorMask);
-
     public void GetDamage(int damage, object sender)
         => _playerCharacteristics.GetDamage(damage, sender);
     private void Stance()
@@ -90,6 +104,17 @@ public class Player : MonoBehaviour, IDamageable
         {
             _playerCharacteristics.UseRune(rune);
             rune.gameObject.SetActive(false);
+        }
+    }
+    private void ChangeSpeed()
+    {
+        if (_speedControlService.Multiply == 0)
+        {
+            _animator.SetBool("stop", true);
+        }
+        else
+        {
+            _animator.SetBool("stop", false);
         }
     }
 }

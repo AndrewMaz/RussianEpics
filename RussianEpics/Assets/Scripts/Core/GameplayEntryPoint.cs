@@ -46,14 +46,13 @@ public class GameplayEntryPoint : MonoBehaviour
         _playerHUD.Initialize(_allCharacteristicsServices.ToArray(), _maxHealth);
         _playerHUD.gameObject.SetActive(true);
         //Player Input
-        _playerInput.Initialize(_mainCamera, _playerHUD, _trajectory);
+        _playerInput.Initialize(_mainCamera, _playerHUD, _trajectory, _speedControlService);
         //bowPlayer
-        _bowPlayer.Initialize(_playerInput, _bowCharacteristicsService);
+        _bowPlayer.Initialize(_playerInput, _bowCharacteristicsService, _speedControlService);
         //hammerPlayer
-        _hammerPlayer.Initialize(_playerInput, _hammerCharacteristicsService);
+        _hammerPlayer.Initialize(_playerInput, _hammerCharacteristicsService, _speedControlService);
         //Pause Menu
         _menuHUD.Initialize(_allCharacteristicsServices.ToArray(), _speedControlService);
-        _menuHUD.gameObject.SetActive(true);
         _spawner.StartGame();
     }
 }

@@ -17,7 +17,7 @@ namespace Abstracts
         protected Motor _motor;
 
         private ScoreSystem _scoreSystem;
-        private SpeedControlService _speedControlService;
+        protected SpeedControlService _speedControlService;
         public virtual SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService)
         {
             _scoreSystem = scoreSystem;
