@@ -14,10 +14,10 @@ namespace Abstracts
 
         private int _stage;
 
-        protected Motor _motor;
+        private Motor _motor;
 
         private ScoreSystem _scoreSystem;
-        protected SpeedControlService _speedControlService;
+        private SpeedControlService _speedControlService;
         public virtual SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService)
         {
             _scoreSystem = scoreSystem;
@@ -42,6 +42,10 @@ namespace Abstracts
                 _spriteToChange.sprite = sprites[_stage];
             }
         }
+        protected float Speed
+        {
+            get => _motor.Speed;
+        }
         protected void Awake()
         {
             if (_atlas == null) return;
@@ -60,6 +64,10 @@ namespace Abstracts
         protected virtual void ChangeSpeed()
         {
             _motor.SetMultiply(_speedControlService.Multiply);
+        }
+        protected void SetSpeed(float value)
+        {
+            _motor.Speed = value;
         }
         protected void OnEnable()
         {

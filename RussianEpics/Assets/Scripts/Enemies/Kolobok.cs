@@ -10,18 +10,18 @@ public class Kolobok : Enemy
 
     private void Start()
     {
-        _startSpeed = _motor.Speed;
+        _startSpeed = Speed;
     }
     public override void React()
     {
-        _motor.Speed = newSpeed;
+        SetSpeed(newSpeed);
     }
     public override void GetDamage(int damage, object sender)
     {
         if (sender is ExplosionArrow || sender is Hammer)
         {
             base.GetDamage(damage, sender);
-            _motor.Speed = _startSpeed;
+            SetSpeed(_startSpeed);
         }
     }
 }

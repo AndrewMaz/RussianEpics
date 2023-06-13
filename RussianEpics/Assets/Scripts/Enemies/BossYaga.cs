@@ -17,10 +17,8 @@ public class BossYaga : Enemy
     private float _timer;
     private bool _isInvulnerable;
 
-    //X (-2, 4);
+    //X (-2, 2);
     //Y (-1, 3);
-
-    private CapsuleCollider2D capsuleCollider;
     public int Health
     {
         get => _health;
@@ -41,9 +39,8 @@ public class BossYaga : Enemy
             }
         }
     }
-    private new void Awake()
+    private void Start()
     {
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
         _timer = _invTime;
     }
     private void Update()
@@ -56,28 +53,28 @@ public class BossYaga : Enemy
     public override void GetDamage(int damage, object sender)
     {
         if (_isInvulnerable) return;
-        _animator.SetTrigger("takeDamage");
+        SetAnimatorTrigger("takeDamage");
         Health -= damage;
         IsDamaged?.Invoke(Health);
     }
 
     private void Move()
     {
-        Vector2 offset = new(UnityEngine.Random.Range(-2f, 4f), UnityEngine.Random.Range(-1f, 3f));
+        Vector2 offset = new(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-1f, 3f));
         _model.position += new Vector3(offset.x, offset.y, 0f);
-        capsuleCollider.offset += offset;
+        AddColiderOffset(offset);
     }
 
     public void Apply()
     {
-        _motor.Speed = newSpeed;
-        capsuleCollider.enabled = true;
+        SetSpeed(newSpeed);
+        SwitchColider(true);
         _bossShield.gameObject.SetActive(false);
     }
 
     public override void React()
     {
-        _motor.Speed = 0f;
+        SetSpeed(0f);
         gameObject.transform.position += Vector3.left * 2f;
     }
 
@@ -92,7 +89,7 @@ public class BossYaga : Enemy
 
     private void MakeInvulnerable()
     {
-        capsuleCollider.enabled = false;
+        SwitchColider(false);
         _timer -= Time.deltaTime;
         _bossShield.gameObject.SetActive(true);
 
@@ -100,7 +97,7 @@ public class BossYaga : Enemy
         {
             _isInvulnerable = false;
             _timer = _invTime;
-            capsuleCollider.enabled = true;
+            SwitchColider(true);
             _bossShield.gameObject.SetActive(false);
         }
     }

@@ -1,4 +1,4 @@
-using Abstracts;
+/*using Abstracts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,4 +25,4 @@ public class Event : Enemy
         _shouldResetSpeed = true;
         _speedControlService.StopSpeed();
     }
-}
+}*/

@@ -8,6 +8,6 @@ public class Ghoul : Enemy
     protected override void OnDamageDealt(IDamageable target)
     {
         base.OnDamageDealt(target);
-        _animator.SetTrigger("attack");
+        SetAnimatorTrigger("attack");
     }
 }

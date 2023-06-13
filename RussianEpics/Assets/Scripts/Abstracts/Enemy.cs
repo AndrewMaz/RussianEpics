@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace Abstracts
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public abstract class Enemy : SpawnElement, IDamageable
     {
         [SerializeField] private DamageArea _damageArea;
         [SerializeField] private int _damage;
-        [SerializeField] protected Animator _animator;
+        [SerializeField] private Animator _animator;
 
-        protected Rigidbody2D _rb;
-        protected CapsuleCollider2D _capsuleCollider;
+        private Rigidbody2D _rb;
+        private CapsuleCollider2D _capsuleCollider;
         private new void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -33,14 +34,34 @@ namespace Abstracts
         }
         public virtual void GetDamage(int damage, object sender)
         {
-            _animator.SetTrigger("takeDamage");
-            _rb.bodyType = RigidbodyType2D.Static;
-            _capsuleCollider.offset += Vector2.down;
+            SetAnimatorTrigger("takeDamage");
+            SetRbStatic();
+            AddColiderOffset(Vector2.down);
             AddScore();
         }
         public virtual void React()
         {
 
+        }
+        protected void SetRbStatic()
+        {
+            _rb.bodyType = RigidbodyType2D.Static;
+        }
+        protected void SetRbDinamic()
+        {
+            _rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+        protected void SwitchColider(bool value)
+        {
+            _capsuleCollider.enabled = value;
+        }
+        protected void AddColiderOffset(Vector2 offset)
+        {
+            _capsuleCollider.offset += offset;
+        }
+        protected void SetAnimatorTrigger(string trigger)
+        {
+            _animator.SetTrigger(trigger);
         }
     }
 }
