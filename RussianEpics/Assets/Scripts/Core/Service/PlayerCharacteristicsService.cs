@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerCharacteristicsService
 {
+    [SerializeField] float pointsForRune = 150f;
+
     private Weapon _weapon;
     private SpeedControlService _speedControlService;
 
@@ -29,8 +31,8 @@ public class PlayerCharacteristicsService
             case WeaponRune arrowRune: // boostRune
                 _weapon.ApplyRune(arrowRune);
                 break;
-            case BossRune bossRune:  /// Giper
-                bossRune.AddScore();
+            case BossRune bossRune:
+                bossRune.AddScore(pointsForRune);
                 break;
             case SlowRune:
                 _speedControlService.ChangeSpeed();

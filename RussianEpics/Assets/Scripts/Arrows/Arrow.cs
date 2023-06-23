@@ -60,7 +60,7 @@ public class Arrow : MonoBehaviour, IDamageable
 
     public void GetDamage(int damage, object sender)
     {
-        if ((sender is Ghoul && Random.value < _deflectChance/100) || (sender is Kolobok && _deflectChance >= 0))
+        if ((sender is Ghoul && Random.value < _deflectChance/100) || (sender is Kolobok && _deflectChance > 0))
         {
             Deflect();
         }

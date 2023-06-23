@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class ChunkSpawner : MonoBehaviour
 {
-    public List<Chunk> chunks;
-    public Chunk[] bosschunks;
-    [SerializeField] private ChunkEnd chunkEnd;
-    [SerializeField] private Transform spawnObject;
+    [SerializeField] private List<Chunk> _chunks;
+    [SerializeField] private Chunk[] _bossChunks;
+    [SerializeField] private ChunkEnd _chunkEnd;
+    [SerializeField] private Transform _spawnObject;
+    [Space]
+    [Header("Наборы чанков")]
+    [SerializeField] private List<Chunk> _startChunks;
 
     private Queue<Chunk> _chunkFeed = new Queue<Chunk>();
     private int _currentStage = 0;
@@ -21,25 +24,49 @@ public class ChunkSpawner : MonoBehaviour
     {
         SpawnNextChunk();
     }
+    private void OnEnable()
+    {
+        _scoreSystem.OnThreshold1 += HandleTreshold1;
+    }
+    private void OnDisable()
+    {
+        _scoreSystem.OnThreshold1 -= HandleTreshold1;
+    }
     public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService)
     {
         _scoreSystem = scoreSystem;
         _speedControlService = speedControlService;
+
+        enabled = true;
     }
     public void StartGame()
     {
         IsGameStarted = true;
+        _chunks = _startChunks;
     }
+/*    public void SetNewChunks(List<Chunk> chunks)
+    {
+        _chunks = chunks;
+    }*/
     private void FillChunkFeed()
     {
-        chunks.Shuffle();
+        _chunks.Shuffle();
 
-        foreach(Chunk chunk in chunks) 
+        foreach(Chunk chunk in _chunks) 
         {
             _chunkFeed.Enqueue(chunk);
         }
-       
-        _chunkFeed.Enqueue(bosschunks[_currentStage]);
+    }
+    private void HandleTreshold1()
+    {
+        _chunkFeed.Clear();
+        _chunkFeed.Enqueue(_bossChunks[_currentStage]);
+
+        _currentStage++;
+        if (_currentStage == _bossChunks.Length)
+        {
+            _currentStage = 0;
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -51,11 +78,6 @@ public class ChunkSpawner : MonoBehaviour
         if(_chunkFeed.Count == 0)
         {
             FillChunkFeed();
-            _currentStage++;
-            if (_currentStage == bosschunks.Length)
-            {
-                _currentStage = 0;
-            }
         }
 
         var x = 0;
@@ -72,7 +94,7 @@ public class ChunkSpawner : MonoBehaviour
                 if(element == null)
                     continue;
 
-                var instantiate = Instantiate(element.gameObject, spawnObject, true);
+                var instantiate = Instantiate(element.gameObject, _spawnObject, true);
 
                 instantiate.name += $" {x} {y}";
 
@@ -83,7 +105,7 @@ public class ChunkSpawner : MonoBehaviour
             }
         }
         
-        var instantiate1 = Instantiate(chunkEnd);
+        var instantiate1 = Instantiate(_chunkEnd);
         if (IsGameStarted)
         {
             instantiate1.GetComponent<SpawnElement>().Initialize(_scoreSystem, _speedControlService);

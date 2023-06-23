@@ -10,7 +10,6 @@ namespace Abstracts
         [SerializeField] private SpriteAtlas _atlas;
         [SerializeField] private SpriteRenderer _spriteToChange;
         [SerializeField] private Sprite[] sprites;
-        [SerializeField] private int points = 0;
 
         private int _stage;
 
@@ -53,13 +52,13 @@ namespace Abstracts
             _atlas.GetSprites(sprites);
             Stage = 0;
         }
+        public void AddScore(float amount)
+        {
+            _scoreSystem.AddPoints(amount);
+        }
         public void SetStage(int stage)
         {
             Stage = stage;
-        }
-        public virtual void AddScore()
-        {
-            _scoreSystem.AddPoints(points);
         }
         protected virtual void ChangeSpeed()
         {

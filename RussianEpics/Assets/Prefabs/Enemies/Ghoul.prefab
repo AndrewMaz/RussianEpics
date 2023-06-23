@@ -268,7 +268,7 @@ MonoBehaviour:
   _atlas: {fileID: 0}
   _spriteToChange: {fileID: 0}
   sprites: []
-  points: 20
   _damageArea: {fileID: 983655716438324617}
   _damage: 15
   _animator: {fileID: 4946861072493510499}
+  _points: 10

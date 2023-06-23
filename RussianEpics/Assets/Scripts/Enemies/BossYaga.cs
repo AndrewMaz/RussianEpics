@@ -29,7 +29,7 @@ public class BossYaga : Enemy
             {
                 _health = 0;
                 IsDead?.Invoke();
-                AddScore();
+                AddScore(Points);
                 gameObject.SetActive(false);
             }
             else

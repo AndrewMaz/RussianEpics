@@ -6,17 +6,17 @@ public class GameplayEntryPoint : MonoBehaviour
 {
     [Header("Ёлементы сцены")]
     [SerializeField] private Camera _mainCamera;
-    public ChunkSpawner _spawner;
+    [SerializeField] ChunkSpawner _spawner;
     [SerializeField] private PlayerHUD _playerHUD;
     [SerializeField] private BossHUD _bossHUD;
     [SerializeField] private MenuHUD _menuHUD;
+    [SerializeField] private ScoreHUD _scoreHUD;
     [SerializeField] private EnemyChecker _enemyChecker;
-    public SpeedControlService _speedControlService;
+    [SerializeField] SpeedControlService _speedControlService;
     [SerializeField] private StartFloor _startFloor;
 
     [Header("ѕлеера")]
-    public Player _bowPlayer;
-    public Player _hammerPlayer;
+    [SerializeField] Player[] _players;
     [SerializeField] private int _maxHealth;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] Weapon _bowWeapon;
@@ -25,7 +25,7 @@ public class GameplayEntryPoint : MonoBehaviour
 
     private PlayerCharacteristicsService _bowCharacteristicsService;
     private PlayerCharacteristicsService _hammerCharacteristicsService;
-    private List<PlayerCharacteristicsService> _allCharacteristicsServices = new List<PlayerCharacteristicsService>();
+    private List<PlayerCharacteristicsService> _allCharacteristicsServices = new();
 
     private BossCharacteristicsService _bossService;
     private ScoreSystem _scoreSystem;
@@ -45,14 +45,43 @@ public class GameplayEntryPoint : MonoBehaviour
         //Player HUD
         _playerHUD.Initialize(_allCharacteristicsServices.ToArray(), _maxHealth);
         _playerHUD.gameObject.SetActive(true);
+        //ScoreHUD
+        _scoreHUD.Initialize(_scoreSystem);
         //Player Input
         _playerInput.Initialize(_mainCamera, _playerHUD, _trajectory, _speedControlService);
-        //bowPlayer
-        _bowPlayer.Initialize(_playerInput, _bowCharacteristicsService, _speedControlService);
-        //hammerPlayer
-        _hammerPlayer.Initialize(_playerInput, _hammerCharacteristicsService, _speedControlService);
+        //players
+        int i = 0;
+        foreach (var player in _players)
+        {
+            player.Initialize(_playerInput, _allCharacteristicsServices[i], _speedControlService);
+            player.Animator.SetBool("start", false);
+            i++;
+        }
+        /*        _bowPlayer
+                //hammerPlayer
+                _hammerPlayer.Initialize(_playerInput, _hammerCharacteristicsService, _speedControlService);
+
+                //Player Animators
+                _bowPlayer.Animator.SetBool("start", false);
+                _hammerPlayer.Animator.SetBool("start", false);*/
         //Pause Menu
         _menuHUD.Initialize(_allCharacteristicsServices.ToArray(), _speedControlService);
         _spawner.StartGame();
+        //SpeedControl Service
+        _speedControlService.ResetSpeed();
     }
+
+    public void SwitchPlayer(int playerIndex)
+    {
+        foreach (var player in _players)
+        {
+            player.gameObject.SetActive(false);
+        }
+
+        _players[playerIndex].gameObject.SetActive(true);
+    }
+/*    public bool IsHammerPlayerActive()
+    {
+        return _hammerPlayer.gameObject.activeInHierarchy;
+    }*/
 }

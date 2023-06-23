@@ -1,14 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreSystem
 {
-    private int _totalScore;
-    public void AddPoints(int amount)
+    private float _totalScore, _threshold1 = 100f;
+
+    public float TotalScore { get { return _totalScore; } }
+
+    public event Action OnScoreChange, OnThreshold1;
+    public void AddPoints(float amount)
     {
         _totalScore += amount;
-        Debug.Log("[ScoreSytem]: AddPoints " + _totalScore);
+        OnScoreChange?.Invoke();
+        
+        if (_totalScore >= _threshold1 ) 
+        {
+            OnThreshold1?.Invoke();
+            _threshold1 = Mathf.Infinity;
+        }
     }
     private void Buy()
     {

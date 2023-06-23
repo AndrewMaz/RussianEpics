@@ -46,9 +46,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05101459, y: -0.020314753}
+  m_Offset: {x: -0.05, y: -0.02}
   serializedVersion: 2
-  m_Radius: 0.12212746
+  m_Radius: 0.12
 --- !u!114 &7148624823553726612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,10 +162,10 @@ MonoBehaviour:
   _atlas: {fileID: 0}
   _spriteToChange: {fileID: 0}
   sprites: []
-  points: 40
   _damageArea: {fileID: 7148624823553726612}
   _damage: 25
   _animator: {fileID: 8497920053325457678}
+  _points: 25
   newSpeed: 10
 --- !u!1 &8497920053325457672
 GameObject:

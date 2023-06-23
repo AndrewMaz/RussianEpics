@@ -10,6 +10,9 @@ namespace Abstracts
         [SerializeField] private DamageArea _damageArea;
         [SerializeField] private int _damage;
         [SerializeField] private Animator _animator;
+        [SerializeField] private float _points = 0f;
+
+        public float Points { get => _points; }
 
         private Rigidbody2D _rb;
         private CapsuleCollider2D _capsuleCollider;
@@ -37,7 +40,7 @@ namespace Abstracts
             SetAnimatorTrigger("takeDamage");
             SetRbStatic();
             AddColiderOffset(Vector2.down);
-            AddScore();
+            AddScore(_points);
         }
         public virtual void React()
         {

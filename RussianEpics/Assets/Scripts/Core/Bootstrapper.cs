@@ -8,9 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class Bootstrapper : MonoBehaviour
 {
-    [SerializeField] private List<Chunk> _chunks;
-    [SerializeField] private Chunk[] _bosschunks;
-
     private MainMenu _mainMenu;
     private GameplayEntryPoint _gameplayEntryPoint;
     private MenuHUD _menuHUD;
@@ -37,10 +34,10 @@ public class Bootstrapper : MonoBehaviour
         if (_isRestarted)
         {
             _isRestarted = false;
-            if (_isHammerPlayer)
+/*            if (_isHammerPlayer)
             {
                 ChangePlayerToHammer();
-            }
+            }*/
 
             StartGame();
         }
@@ -55,17 +52,13 @@ public class Bootstrapper : MonoBehaviour
     private void StartGame()
     {
         _mainMenu.gameObject.SetActive(false);
-        _gameplayEntryPoint._spawner.chunks = _chunks;
-        _gameplayEntryPoint._spawner.bosschunks = _bosschunks;
+
         _gameplayEntryPoint.Initialize();
-        _gameplayEntryPoint._bowPlayer.Animator.SetBool("start", false);
-        _gameplayEntryPoint._hammerPlayer.Animator.SetBool("start", false);
-        _gameplayEntryPoint._speedControlService.ResetSpeed();
     }
     private void RestartGame()
     {
         _isRestarted = true;
-        _isHammerPlayer = _gameplayEntryPoint._hammerPlayer.gameObject.activeInHierarchy;
+        //_isHammerPlayer = _gameplayEntryPoint.IsHammerPlayerActive();
 
         StartCoroutine(LoadSceneWithWait());
         StartCoroutine(WaitForSceneElements());
@@ -77,13 +70,11 @@ public class Bootstrapper : MonoBehaviour
     }
     private void ChangePlayerToBow()
     {
-        _gameplayEntryPoint._bowPlayer.gameObject.SetActive(true);
-        _gameplayEntryPoint._hammerPlayer.gameObject.SetActive(false);
+        _gameplayEntryPoint.SwitchPlayer(0);
     }
     private void ChangePlayerToHammer()
     {
-        _gameplayEntryPoint._bowPlayer.gameObject.SetActive(false);
-        _gameplayEntryPoint._hammerPlayer.gameObject.SetActive(true);
+        _gameplayEntryPoint.SwitchPlayer(1);
     }
     IEnumerator LoadSceneWithWait()
     {
