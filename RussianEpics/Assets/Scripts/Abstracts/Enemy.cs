@@ -1,4 +1,5 @@
 using Assets.Scripts.Interfaces;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,11 +12,30 @@ namespace Abstracts
         [SerializeField] private int _damage;
         [SerializeField] private Animator _animator;
         [SerializeField] private float _points = 0f;
-
+        [SerializeField] private int _health = 1;
         public float Points { get => _points; }
 
         private Rigidbody2D _rb;
         private CapsuleCollider2D _capsuleCollider;
+
+        public event Action<int> IsDamaged;
+        public event Action IsDead;
+
+        public int Health
+        {
+            get => _health;
+            set
+            {
+                _health = value;
+                if (_health <= 0)
+                {
+                    _health = 0;
+                    AddScore(Points);
+                    IsDead?.Invoke();
+                    gameObject.SetActive(false);
+                }
+            }
+        }
         private new void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -30,6 +50,10 @@ namespace Abstracts
         {
             base.OnDisable();
             _damageArea.IsDamageDealt -= OnDamageDealt;
+        }
+        protected virtual void OnDamaged(int value)
+        {
+            IsDamaged?.Invoke(value);
         }
         protected virtual void OnDamageDealt(IDamageable target)
         {
@@ -65,6 +89,14 @@ namespace Abstracts
         protected void SetAnimatorTrigger(string trigger)
         {
             _animator.SetTrigger(trigger);
+        }
+        protected void Jump(float minForce, float maxForce)
+        {
+            _rb.AddForce(new Vector2(0, UnityEngine.Random.Range(minForce, maxForce)));
+        }
+        protected void SetHealth(int value)
+        {
+            _health = value;
         }
     }
 }

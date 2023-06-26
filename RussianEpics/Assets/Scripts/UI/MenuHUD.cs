@@ -10,6 +10,7 @@ public class MenuHUD : MonoBehaviour
     [SerializeField] GameObject _deathText;
     [SerializeField] Button _resumeButton;
     [SerializeField] Button _menuButton;
+    [SerializeField] Stopwatch _stopwatch;
 
     PlayerCharacteristicsService[] _playerCharacteristicsService;
     SpeedControlService _speedControlService;
@@ -21,6 +22,7 @@ public class MenuHUD : MonoBehaviour
         _playerCharacteristicsService = playerCharacteristicsService;
         _speedControlService = speedControlService;
         _menuButton.gameObject.SetActive(true);
+        _stopwatch.StartStopwatch();
         enabled = true;
     }
     private void OnEnable()
@@ -43,6 +45,8 @@ public class MenuHUD : MonoBehaviour
         _resumeButton.interactable = true;
         _deathText.SetActive(false);
         Time.timeScale = 0f;
+        _stopwatch.StopStopwatch();
+        _stopwatch.UpdateUI();
     }
     public void Restart()
     {
@@ -53,6 +57,7 @@ public class MenuHUD : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         _menuPanel.SetActive(false);
+        _stopwatch.StartStopwatch();
     }
     public void Quit()
     {

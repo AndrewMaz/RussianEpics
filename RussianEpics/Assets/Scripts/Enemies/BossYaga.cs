@@ -5,43 +5,21 @@ using UnityEngine;
 
 public class BossYaga : Enemy
 {
-    [SerializeField] private int _health = 5;
+    [SerializeField] private int _startHealth = 5;
     [SerializeField] private Transform _model;
     [SerializeField] private float _invTime = 1f;
     [SerializeField] private float newSpeed = 10f;
     [SerializeField] private BossShield _bossShield;
-
-    public event Action<int> IsDamaged;
-    public event Action IsDead;
 
     private float _timer;
     private bool _isInvulnerable;
 
     //X (-2, 2);
     //Y (-1, 3);
-    public int Health
-    {
-        get => _health;
-        private set
-        {
-            _health = value;
-            if (_health <= 0)
-            {
-                _health = 0;
-                IsDead?.Invoke();
-                AddScore(Points);
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                _isInvulnerable = true;
-                Move();
-            }
-        }
-    }
     private void Start()
     {
         _timer = _invTime;
+        Health = _startHealth;
     }
     private void Update()
     {
@@ -55,9 +33,13 @@ public class BossYaga : Enemy
         if (_isInvulnerable) return;
         SetAnimatorTrigger("takeDamage");
         Health -= damage;
-        IsDamaged?.Invoke(Health);
+        if (Health > 0)
+        {
+            _isInvulnerable = true;
+            Move();
+        }
+        base.OnDamaged(Health);
     }
-
     private void Move()
     {
         Vector2 offset = new(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-1f, 3f));

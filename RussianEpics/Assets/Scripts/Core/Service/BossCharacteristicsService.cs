@@ -1,13 +1,14 @@
+using Abstracts;
 using System;
 public class BossCharacteristicsService
 {
     public event Action<int> IsBossDamaged;
-    public event Action<BossYaga> IsVisible;
+    public event Action<Enemy> IsVisible;
     public event Action IsDead;
 
-    EnemyChecker _enemyChecker;
+    private EnemyChecker _enemyChecker;
 
-    BossYaga _boss;
+    private Enemy _boss;
     public BossCharacteristicsService(EnemyChecker enemyChecker)
     {
         _enemyChecker = enemyChecker;
@@ -18,7 +19,7 @@ public class BossCharacteristicsService
     {
         IsBossDamaged?.Invoke(health);
     }
-    public void ActivateUI(BossYaga boss)
+    public void ActivateUI(Enemy boss)
     {
         IsVisible?.Invoke(boss);
         _boss = boss;

@@ -17,12 +17,14 @@ namespace Abstracts
 
         private ScoreSystem _scoreSystem;
         private SpeedControlService _speedControlService;
-        public virtual SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService)
+        private Timer _timer;
+        public virtual SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer)
         {
             _scoreSystem = scoreSystem;
             _speedControlService = speedControlService;
             _motor = GetComponent<Motor>();
             ChangeSpeed();
+            _timer = timer;
             enabled = true;
 
             return this;
@@ -68,18 +70,38 @@ namespace Abstracts
         {
             _motor.Speed = value;
         }
+        protected void StartTimer()
+        {
+            _timer.StartTimer();
+        }
+        protected void SetTimer(float seconds)
+        {
+            _timer.StartSeconds = seconds;
+        }
+        protected virtual void ReactToTimer()
+        {
+
+        }
         protected void OnEnable()
         {
-            if (_speedControlService!= null)
+            if (_speedControlService != null)
             {
                 _speedControlService.OnSpeedChange += ChangeSpeed;
+            }
+            if (_timer != null)
+            {
+                _timer.OnFinish += ReactToTimer;
             }
         }
         protected void OnDisable()
         {
-            if (_speedControlService!= null)
+            if (_speedControlService != null)
             {
                 _speedControlService.OnSpeedChange -= ChangeSpeed;
+            }
+            if (_timer != null)
+            {
+                _timer.OnFinish -= ReactToTimer;
             }
         }
     }

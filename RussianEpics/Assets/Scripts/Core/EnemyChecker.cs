@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyChecker : MonoBehaviour
 {
-    public event Action<BossYaga> IsBossShowed;
+    public event Action<Enemy> IsBossShowed;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Enemy enemy))
@@ -16,6 +16,11 @@ public class EnemyChecker : MonoBehaviour
         if (collision.TryGetComponent(out BossYaga bossYaga))
         {
             IsBossShowed?.Invoke(bossYaga);
+            gameObject.SetActive(false);
+        }
+        if (collision.TryGetComponent(out BossKolobok bossKolobok))
+        {
+            IsBossShowed?.Invoke(bossKolobok);
             gameObject.SetActive(false);
         }
     }

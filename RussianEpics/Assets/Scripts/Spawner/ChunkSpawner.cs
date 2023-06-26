@@ -12,6 +12,7 @@ public class ChunkSpawner : MonoBehaviour
     [Space]
     [Header("Наборы чанков")]
     [SerializeField] private List<Chunk> _startChunks;
+    [SerializeField] private List<Chunk> _chunks1;
 
     private Queue<Chunk> _chunkFeed = new Queue<Chunk>();
     private int _currentStage = 0;
@@ -20,6 +21,8 @@ public class ChunkSpawner : MonoBehaviour
 
     private ScoreSystem _scoreSystem;
     private SpeedControlService _speedControlService;
+    private BossCharacteristicsService _bossCharacteristicsService;
+    private Timer _timer;
     private void Start()
     {
         SpawnNextChunk();
@@ -27,15 +30,19 @@ public class ChunkSpawner : MonoBehaviour
     private void OnEnable()
     {
         _scoreSystem.OnThreshold1 += HandleTreshold1;
+        _bossCharacteristicsService.IsDead += HandleIndex;
     }
     private void OnDisable()
     {
         _scoreSystem.OnThreshold1 -= HandleTreshold1;
+        _bossCharacteristicsService.IsDead -= HandleIndex;
     }
-    public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService)
+    public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, BossCharacteristicsService bossCharacteristicsService, Timer timer)
     {
         _scoreSystem = scoreSystem;
         _speedControlService = speedControlService;
+        _bossCharacteristicsService = bossCharacteristicsService;
+        _timer = timer;
 
         enabled = true;
     }
@@ -44,10 +51,10 @@ public class ChunkSpawner : MonoBehaviour
         IsGameStarted = true;
         _chunks = _startChunks;
     }
-/*    public void SetNewChunks(List<Chunk> chunks)
+    public void SetNewChunks(List<Chunk> chunks)
     {
         _chunks = chunks;
-    }*/
+    }
     private void FillChunkFeed()
     {
         _chunks.Shuffle();
@@ -62,6 +69,11 @@ public class ChunkSpawner : MonoBehaviour
         _chunkFeed.Clear();
         _chunkFeed.Enqueue(_bossChunks[_currentStage]);
 
+        SetNewChunks(_chunks1);
+        FillChunkFeed();
+    }
+    private void HandleIndex()
+    {
         _currentStage++;
         if (_currentStage == _bossChunks.Length)
         {
@@ -101,14 +113,14 @@ public class ChunkSpawner : MonoBehaviour
                 instantiate.transform.position =
                     new Vector3(position.x + x, position.y + y, 0.0f);
                 var spElement = instantiate.GetComponent<SpawnElement>();
-                spElement.Initialize(_scoreSystem, _speedControlService).SetStage(_currentStage);
+                spElement.Initialize(_scoreSystem, _speedControlService, _timer).SetStage(_currentStage);
             }
         }
         
         var instantiate1 = Instantiate(_chunkEnd);
         if (IsGameStarted)
         {
-            instantiate1.GetComponent<SpawnElement>().Initialize(_scoreSystem, _speedControlService);
+            instantiate1.GetComponent<SpawnElement>().Initialize(_scoreSystem, _speedControlService, _timer);
         }
 
         instantiate1.transform.position =

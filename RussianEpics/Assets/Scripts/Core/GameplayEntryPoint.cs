@@ -6,14 +6,15 @@ public class GameplayEntryPoint : MonoBehaviour
 {
     [Header("Ёлементы сцены")]
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] ChunkSpawner _spawner;
+    [SerializeField] private ChunkSpawner _spawner;
     [SerializeField] private PlayerHUD _playerHUD;
     [SerializeField] private BossHUD _bossHUD;
     [SerializeField] private MenuHUD _menuHUD;
     [SerializeField] private ScoreHUD _scoreHUD;
     [SerializeField] private EnemyChecker _enemyChecker;
-    [SerializeField] SpeedControlService _speedControlService;
+    [SerializeField] private SpeedControlService _speedControlService;
     [SerializeField] private StartFloor _startFloor;
+    [SerializeField] private Timer _timer;
 
     [Header("ѕлеера")]
     [SerializeField] Player[] _players;
@@ -34,8 +35,8 @@ public class GameplayEntryPoint : MonoBehaviour
         _bossService = new BossCharacteristicsService(_enemyChecker);
         _scoreSystem = new ScoreSystem();
         _bossHUD.Initialize(_bossService);
-        _spawner.Initialize(_scoreSystem, _speedControlService);
-        _startFloor.Initialize(_scoreSystem, _speedControlService);
+        _spawner.Initialize(_scoreSystem, _speedControlService, _bossService, _timer);
+        _startFloor.Initialize(_scoreSystem, _speedControlService, _timer);
     }
     public void Initialize()
     {
@@ -57,13 +58,6 @@ public class GameplayEntryPoint : MonoBehaviour
             player.Animator.SetBool("start", false);
             i++;
         }
-        /*        _bowPlayer
-                //hammerPlayer
-                _hammerPlayer.Initialize(_playerInput, _hammerCharacteristicsService, _speedControlService);
-
-                //Player Animators
-                _bowPlayer.Animator.SetBool("start", false);
-                _hammerPlayer.Animator.SetBool("start", false);*/
         //Pause Menu
         _menuHUD.Initialize(_allCharacteristicsServices.ToArray(), _speedControlService);
         _spawner.StartGame();
@@ -80,8 +74,4 @@ public class GameplayEntryPoint : MonoBehaviour
 
         _players[playerIndex].gameObject.SetActive(true);
     }
-/*    public bool IsHammerPlayerActive()
-    {
-        return _hammerPlayer.gameObject.activeInHierarchy;
-    }*/
 }

@@ -1,3 +1,4 @@
+using Abstracts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +33,7 @@ public class BossHUD : MonoBehaviour
         currenntHealth = health;
         _slider.value = currenntHealth / maxHealth;
     }
-    public void ActivateUI(BossYaga boss)
+    public void ActivateUI(Enemy boss)
     {
         _slider.gameObject.SetActive(true);
         currenntHealth = boss.Health;

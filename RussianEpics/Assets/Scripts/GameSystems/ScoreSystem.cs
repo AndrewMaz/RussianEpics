@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ScoreSystem
 {
-    private float _totalScore, _threshold1 = 100f;
+    private float _totalScore, _threshold1 = 50f;
 
     public float TotalScore { get { return _totalScore; } }
 
