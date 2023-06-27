@@ -1,4 +1,5 @@
 using Abstracts;
+using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
@@ -11,10 +12,12 @@ public class ChunkSpawner : MonoBehaviour
     [SerializeField] private Transform _spawnObject;
     [Space]
     [Header("Наборы чанков")]
-    [SerializeField] private List<Chunk> _startChunks;
     [SerializeField] private List<Chunk> _chunks1;
+    [SerializeField] private List<Chunk> _chunks2;
 
-    private Queue<Chunk> _chunkFeed = new Queue<Chunk>();
+    private Queue<Chunk> _chunkFeed = new();
+    private List<List<Chunk>> _chunkSets = new();
+
     private int _currentStage = 0;
 
     public bool IsGameStarted { get; set; } = false;
@@ -26,15 +29,17 @@ public class ChunkSpawner : MonoBehaviour
     private void Start()
     {
         SpawnNextChunk();
+        _chunkSets.Add(_chunks1);
+        _chunkSets.Add(_chunks2);
     }
     private void OnEnable()
     {
-        _scoreSystem.OnThreshold1 += HandleTreshold1;
+        _scoreSystem.OnThreshold += HandleTreshold;
         _bossCharacteristicsService.IsDead += HandleIndex;
     }
     private void OnDisable()
     {
-        _scoreSystem.OnThreshold1 -= HandleTreshold1;
+        _scoreSystem.OnThreshold -= HandleTreshold;
         _bossCharacteristicsService.IsDead -= HandleIndex;
     }
     public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, BossCharacteristicsService bossCharacteristicsService, Timer timer)
@@ -49,7 +54,7 @@ public class ChunkSpawner : MonoBehaviour
     public void StartGame()
     {
         IsGameStarted = true;
-        _chunks = _startChunks;
+        SetNewChunks(_chunkSets[0]);
     }
     public void SetNewChunks(List<Chunk> chunks)
     {
@@ -64,12 +69,12 @@ public class ChunkSpawner : MonoBehaviour
             _chunkFeed.Enqueue(chunk);
         }
     }
-    private void HandleTreshold1()
+    private void HandleTreshold()
     {
         _chunkFeed.Clear();
         _chunkFeed.Enqueue(_bossChunks[_currentStage]);
 
-        SetNewChunks(_chunks1);
+        SetNewChunks(_chunkSets[_currentStage]);
         FillChunkFeed();
     }
     private void HandleIndex()

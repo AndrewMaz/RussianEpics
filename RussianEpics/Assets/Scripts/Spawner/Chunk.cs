@@ -4,6 +4,7 @@ using Abstracts;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Chunk", order = 1)]
+[Serializable]
 public class Chunk: ScriptableObject
 {
     [Serializable]

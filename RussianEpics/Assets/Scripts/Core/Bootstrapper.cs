@@ -12,7 +12,7 @@ public class Bootstrapper : MonoBehaviour
     private GameplayEntryPoint _gameplayEntryPoint;
     private MenuHUD _menuHUD;
 
-    private bool _isRestarted = false, _isHammerPlayer = false;
+    private bool _isRestarted = false;
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -21,7 +21,7 @@ public class Bootstrapper : MonoBehaviour
     private void Start()
     {
         //main Menu
-         _mainMenu = FindObjectOfType<MainMenu>();
+        _mainMenu = FindObjectOfType<MainMenu>();
         _mainMenu.startButton.onClick.AddListener(StartGame);
         _mainMenu.IsPlayerChangedToBow += ChangePlayerToBow;
         _mainMenu.IsPlayerChangedToHammer += ChangePlayerToHammer;
@@ -34,10 +34,6 @@ public class Bootstrapper : MonoBehaviour
         if (_isRestarted)
         {
             _isRestarted = false;
-/*            if (_isHammerPlayer)
-            {
-                ChangePlayerToHammer();
-            }*/
 
             StartGame();
         }
@@ -58,7 +54,6 @@ public class Bootstrapper : MonoBehaviour
     private void RestartGame()
     {
         _isRestarted = true;
-        //_isHammerPlayer = _gameplayEntryPoint.IsHammerPlayerActive();
 
         StartCoroutine(LoadSceneWithWait());
         StartCoroutine(WaitForSceneElements());
@@ -87,6 +82,7 @@ public class Bootstrapper : MonoBehaviour
     }
     IEnumerator WaitForSceneElements()
     {
+        Time.timeScale = 1.0f;
         yield return new WaitForSeconds(1f);
         Start();
     }

@@ -7,7 +7,7 @@ public class WeaponBoundary : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Weapon _))
+        if (collision.TryGetComponent(out Weapon _) || collision.TryGetComponent(out Arrow _))
         {
             Destroy(collision.gameObject);
         }

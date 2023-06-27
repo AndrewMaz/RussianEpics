@@ -153,6 +153,9 @@ MonoBehaviour:
   _bowWeapon: {fileID: 1638923127}
   _hammerWeapon: {fileID: 1042494221}
   _trajectory: {fileID: 1497035318}
+  _thresholds:
+  - 50
+  - 150
 --- !u!1 &40576675
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430896469}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 32.7, y: -14.4, z: 0}
+  m_LocalPosition: {x: 13.2, y: -14.4, z: 0}
   m_LocalScale: {x: 2, y: 101.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -988,7 +991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809761200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.4, y: -14.4, z: 0}
+  m_LocalPosition: {x: 82, y: -14.4, z: 0}
   m_LocalScale: {x: 2, y: 101.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1173,23 +1176,24 @@ MonoBehaviour:
   _chunks:
   - {fileID: 11400000, guid: bac99ad84526a7342ad6a13297f2724a, type: 2}
   _bossChunks:
-  - {fileID: 11400000, guid: 41433ee17b28e9f4684d76b1af3027f3, type: 2}
   - {fileID: 11400000, guid: 9143324611d87104dab422f053214b76, type: 2}
+  - {fileID: 11400000, guid: 41433ee17b28e9f4684d76b1af3027f3, type: 2}
   _chunkEnd: {fileID: 3474207742664579938, guid: d7813a81b14629b42b793b6b0d1c3b6b, type: 3}
   _spawnObject: {fileID: 677714251}
-  _startChunks:
+  _chunks1:
   - {fileID: 11400000, guid: 662c31e225d0a71498e5013c060c80de, type: 2}
   - {fileID: 11400000, guid: f0f808593efd7de4eb400ec9680419da, type: 2}
   - {fileID: 11400000, guid: 29857a637827f4748a3808a1a3e0427e, type: 2}
   - {fileID: 11400000, guid: 1081c2a8f5088d046b0cf9d349cad2b1, type: 2}
   - {fileID: 11400000, guid: a77106f9a66393146a49af956b557bd3, type: 2}
-  _chunks1:
+  _chunks2:
+  - {fileID: 11400000, guid: 662c31e225d0a71498e5013c060c80de, type: 2}
   - {fileID: 11400000, guid: a4c0440ae007f304988da0e339b26cc1, type: 2}
+  - {fileID: 11400000, guid: f0f808593efd7de4eb400ec9680419da, type: 2}
+  - {fileID: 11400000, guid: 6987be3eb15c75345840fa45309fe2c8, type: 2}
+  - {fileID: 11400000, guid: 29857a637827f4748a3808a1a3e0427e, type: 2}
   - {fileID: 11400000, guid: 37678cfdfa615214892c031f42b63807, type: 2}
   - {fileID: 11400000, guid: 9cdea4740a831d743a8a8d2b027d59d0, type: 2}
-  - {fileID: 11400000, guid: 662c31e225d0a71498e5013c060c80de, type: 2}
-  - {fileID: 11400000, guid: f0f808593efd7de4eb400ec9680419da, type: 2}
-  - {fileID: 11400000, guid: 29857a637827f4748a3808a1a3e0427e, type: 2}
   - {fileID: 11400000, guid: 1081c2a8f5088d046b0cf9d349cad2b1, type: 2}
   - {fileID: 11400000, guid: a77106f9a66393146a49af956b557bd3, type: 2}
 --- !u!4 &952282164
@@ -1432,7 +1436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185421516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.7, y: -12.53, z: 0}
+  m_LocalPosition: {x: 6.3, y: -12.53, z: 0}
   m_LocalScale: {x: 2, y: 101.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1486,7 +1490,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.07087894}
+  m_Offset: {x: 0, y: 0.089864545}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1497,7 +1501,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.091392145}
+  m_Size: {x: 1, y: 0.12936337}
   m_EdgeRadius: 0
 --- !u!1001 &1311245227
 PrefabInstance:
@@ -2057,7 +2061,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693246151}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 32.7, y: 4.1, z: 0}
+  m_LocalPosition: {x: 5.9, y: 4.1, z: 0}
   m_LocalScale: {x: 2, y: 101.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2828,7 +2832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6769480257665133941, guid: fc161859dbe4aaa42907fe54fac4d3c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.57
+      value: -8.8
       objectReference: {fileID: 0}
     - target: {fileID: 6769480257665133941, guid: fc161859dbe4aaa42907fe54fac4d3c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2943,7 +2947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 333474643248340607, guid: 9e4b9357bf8fb344d8012556dfd8d596, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.85
+      value: -8.8
       objectReference: {fileID: 0}
     - target: {fileID: 333474643248340607, guid: 9e4b9357bf8fb344d8012556dfd8d596, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3347,7 +3351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4325792231236854260, guid: 948519be69c0f7f4f8682100000621fe, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4325792232804810157, guid: 948519be69c0f7f4f8682100000621fe, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3355,6 +3359,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4325792232804810157, guid: 948519be69c0f7f4f8682100000621fe, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4325792232860765943, guid: 948519be69c0f7f4f8682100000621fe, type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4325792233105021560, guid: 948519be69c0f7f4f8682100000621fe, type: 3}
@@ -3412,6 +3420,10 @@ PrefabInstance:
     - target: {fileID: 6506483763451144751, guid: 948519be69c0f7f4f8682100000621fe, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506483764004333194, guid: 948519be69c0f7f4f8682100000621fe, type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6506483764130131184, guid: 948519be69c0f7f4f8682100000621fe, type: 3}
       propertyPath: m_text

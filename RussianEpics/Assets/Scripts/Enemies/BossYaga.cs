@@ -11,14 +11,14 @@ public class BossYaga : Enemy
     [SerializeField] private float newSpeed = 10f;
     [SerializeField] private BossShield _bossShield;
 
-    private float _timer;
+    private float _invTimer;
     private bool _isInvulnerable;
 
     //X (-2, 2);
     //Y (-1, 3);
     private void Start()
     {
-        _timer = _invTime;
+        _invTimer = _invTime;
         Health = _startHealth;
     }
     private void Update()
@@ -72,13 +72,13 @@ public class BossYaga : Enemy
     private void MakeInvulnerable()
     {
         SwitchColider(false);
-        _timer -= Time.deltaTime;
+        _invTimer -= Time.deltaTime;
         _bossShield.gameObject.SetActive(true);
 
-        if (_timer <= 0)
+        if (_invTimer <= 0)
         {
             _isInvulnerable = false;
-            _timer = _invTime;
+            _invTimer = _invTime;
             SwitchColider(true);
             _bossShield.gameObject.SetActive(false);
         }

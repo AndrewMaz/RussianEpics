@@ -53,6 +53,7 @@ public class PlayerCharacteristicsService
         }
         if (_currentHealth < 0)
         {
+            _speedControlService.StopSpeed();
             IsPlayerDead?.Invoke();
         }
     }

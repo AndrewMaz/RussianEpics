@@ -15,14 +15,17 @@ public class GameplayEntryPoint : MonoBehaviour
     [SerializeField] private SpeedControlService _speedControlService;
     [SerializeField] private StartFloor _startFloor;
     [SerializeField] private Timer _timer;
-
+    [Space]
     [Header("Плеера")]
-    [SerializeField] Player[] _players;
+    [SerializeField] private Player[] _players;
     [SerializeField] private int _maxHealth;
     [SerializeField] private PlayerInput _playerInput;
-    [SerializeField] Weapon _bowWeapon;
-    [SerializeField] Weapon _hammerWeapon;
-    [SerializeField] Trajectory _trajectory;
+    [SerializeField] private Weapon _bowWeapon;
+    [SerializeField] private Weapon _hammerWeapon;
+    [SerializeField] private Trajectory _trajectory;
+    [Space]
+    [Header("Пороги очков")]
+    [SerializeField] private float[] _thresholds;
 
     private PlayerCharacteristicsService _bowCharacteristicsService;
     private PlayerCharacteristicsService _hammerCharacteristicsService;
@@ -33,7 +36,7 @@ public class GameplayEntryPoint : MonoBehaviour
     private void Awake()
     {
         _bossService = new BossCharacteristicsService(_enemyChecker);
-        _scoreSystem = new ScoreSystem();
+        _scoreSystem = new ScoreSystem(_thresholds);
         _bossHUD.Initialize(_bossService);
         _spawner.Initialize(_scoreSystem, _speedControlService, _bossService, _timer);
         _startFloor.Initialize(_scoreSystem, _speedControlService, _timer);

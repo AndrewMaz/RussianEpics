@@ -35,12 +35,6 @@ public class PlayerHUD : MonoBehaviour, IPlayerInput
             characteristic.IsPlayerDamaged += Damaged;
         }
     }
-
-    private void OnJump()
-    {
-        IsJumped?.Invoke();
-    }
-
     private void OnDisable()
     {
         _jumpButton.onClick.RemoveAllListeners();
@@ -48,6 +42,10 @@ public class PlayerHUD : MonoBehaviour, IPlayerInput
         {
             characteristic.IsPlayerDamaged -= Damaged;
         }
+    }
+    private void OnJump()
+    {
+        IsJumped?.Invoke();
     }
     private void Damaged(int currentHealth)
     {

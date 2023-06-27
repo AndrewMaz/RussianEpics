@@ -272,8 +272,10 @@ MonoBehaviour:
   _damage: 0
   _animator: {fileID: 4946861072493510499}
   _points: 500
-  _minForce: 10000
+  _health: 6
+  _minForce: 15000
   _maxForce: 25000
   _jumpChance: 75
-  _lifeTime: 300
-  _health: 6
+  _lifeTime: 10
+  _startHealth: 6
+  jumpInterval: 2

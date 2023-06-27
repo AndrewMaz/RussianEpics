@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4963668043242866536}
   - component: {fileID: 5553083163382945082}
   - component: {fileID: 1243298179282451720}
+  - component: {fileID: 8172994311065150411}
   m_Layer: 14
   m_Name: Rune
   m_TagString: Untagged
@@ -157,3 +158,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+--- !u!95 &8172994311065150411
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586561150313068719}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a66502052c849eb40a6acbb59aac4970, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

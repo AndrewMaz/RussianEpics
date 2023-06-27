@@ -36,7 +36,7 @@ public class MenuHUD : MonoBehaviour
     {
         foreach (var characteristic in _playerCharacteristicsService)
         {
-            characteristic.IsPlayerDead += ShowDeathUI;
+            characteristic.IsPlayerDead -= ShowDeathUI;
         }
     }
     public void Pause()
@@ -50,7 +50,6 @@ public class MenuHUD : MonoBehaviour
     }
     public void Restart()
     {
-        Time.timeScale = 1.0f;
         IsRestart?.Invoke();
     }
     public void Resume()
@@ -66,11 +65,9 @@ public class MenuHUD : MonoBehaviour
     }
     private void ShowDeathUI()
     {
-        Time.timeScale = 0.1f;
         _menuPanel.SetActive(true);
         _resumeButton.interactable = false;
         _menuButton.gameObject.SetActive(false);
         _deathText.SetActive(true);
-        _speedControlService.StopSpeed();
     }
 }

@@ -39,7 +39,7 @@ MonoBehaviour:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
-    - {fileID: 7561228125887572928, guid: 619ae590cbea6da41b0d23f0755bcac1, type: 3}
+    - {fileID: 0}
   - Spawnables:
     - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
   - Spawnables:

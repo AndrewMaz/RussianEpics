@@ -49,6 +49,7 @@ namespace Abstracts
         private new void OnDisable()
         {
             base.OnDisable();
+            IsDead?.Invoke();
             _damageArea.IsDamageDealt -= OnDamageDealt;
         }
         protected virtual void OnDamaged(int value)

@@ -12,6 +12,7 @@ public class BossKolobok : Enemy
     [SerializeField] private float _jumpChance = 75f;
     [SerializeField] private float _lifeTime;
     [SerializeField] private int _startHealth = 6;
+    [SerializeField] private float jumpInterval = 2f;
 
     private bool _shouldJump = true;
     private float _speed = 1.5f;
@@ -40,10 +41,10 @@ public class BossKolobok : Enemy
         SetSpeed(_speed);
         SetTimer(_lifeTime);
         StartTimer();
-        StartCoroutine(ActionCooldown());
+        StartCoroutine(ActionCooldown(jumpInterval));
     }
 
-    private IEnumerator ActionCooldown()
+    private IEnumerator ActionCooldown(float interval)
     {
         while (true) 
         {
@@ -52,7 +53,7 @@ public class BossKolobok : Enemy
                 _shouldJump = true;
             }
 
-            yield return new WaitForSecondsRealtime(3f);
+            yield return new WaitForSecondsRealtime(interval);
         }
     }
     private IEnumerator SpeedChange()
@@ -64,8 +65,9 @@ public class BossKolobok : Enemy
             SetSpeed(_speed = -_speed);
         }
     }
-    protected override void ReactToTimer()
+    public override void ReactToTimer()
     {
+        StopAllCoroutines();
         SetSpeed(-3f);
         Destroy(this, 5);
     }

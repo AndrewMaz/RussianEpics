@@ -78,7 +78,7 @@ namespace Abstracts
         {
             _timer.StartSeconds = seconds;
         }
-        protected virtual void ReactToTimer()
+        public virtual void ReactToTimer()
         {
 
         }

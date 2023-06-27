@@ -57,13 +57,6 @@ public class Player : MonoBehaviour, IDamageable
         _playerCharacteristics.IsPlayerDamaged -= Damaged;
         _playerCharacteristics.IsPlayerDead -= Dead;
     }
-    private void Update()
-    {
-        if (gameObject.transform.position.y <= -12f)
-        {
-            GetDamage(500, this);
-        }
-    }
     private void Fire(Vector2 firePosition, float time)
     {
         if (time == 1f)
@@ -116,5 +109,9 @@ public class Player : MonoBehaviour, IDamageable
         {
             _animator.SetBool("stop", false);
         }
+    }
+    private void OnDestroy()
+    {
+        GetDamage(500, this);
     }
 }
