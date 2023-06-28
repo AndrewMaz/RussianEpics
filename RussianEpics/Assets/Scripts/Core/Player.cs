@@ -2,6 +2,7 @@ using Abstracts;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Interfaces.Infrastructure;
 using System;
+using System.Collections;
 using UnityEngine;
 
 
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private LayerMask _floorMask;
     [SerializeField] private Animator _animator;
+
+    private Vector3 _startPosition;
     
     private const float _rayDistance = 1f;
     private Rigidbody2D _rb;
@@ -25,6 +28,7 @@ public class Player : MonoBehaviour, IDamageable
         _input = input;
         _playerCharacteristics = playerCharacteristics;
         _speedControlService = speedControlService;
+
         enabled = true;
     }
     private void Awake()
@@ -43,6 +47,9 @@ public class Player : MonoBehaviour, IDamageable
         _input.IsJumped += Jump;
         _playerCharacteristics.IsPlayerDamaged += Damaged;
         _playerCharacteristics.IsPlayerDead += Dead;
+
+        _startPosition = gameObject.transform.position;
+        StartCoroutine(PositionCheck());
     }
     private void OnDisable()
     {
@@ -113,5 +120,25 @@ public class Player : MonoBehaviour, IDamageable
     private void OnDestroy()
     {
         GetDamage(500, this);
+    }
+    private IEnumerator PositionCheck()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+
+            if (gameObject.transform.position.x < _startPosition.x)
+            {
+                StartCoroutine(PositionFix());
+            }
+        }
+    }
+    private IEnumerator PositionFix()
+    {
+        while (gameObject.transform.position.x < _startPosition.x)
+        {
+            gameObject.transform.position += Vector3.right / 100f;
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 }

@@ -1,10 +1,12 @@
 using Abstracts;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BossHUD : MonoBehaviour
 {
     [SerializeField] Slider _slider;
+    [SerializeField] TextMeshProUGUI _bossName;
 
     private float currenntHealth, maxHealth;
     private void Awake()
@@ -38,6 +40,7 @@ public class BossHUD : MonoBehaviour
         _slider.gameObject.SetActive(true);
         currenntHealth = boss.Health;
         maxHealth = boss.Health;
+        _bossName.text = boss.Name;
     }
     public void DeactivateUI()
     {

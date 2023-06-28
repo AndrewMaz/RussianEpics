@@ -13,7 +13,13 @@ namespace Abstracts
         [SerializeField] private Animator _animator;
         [SerializeField] private float _points = 0f;
         [SerializeField] private int _health = 1;
+        [SerializeField] private string _name;
+
+        private bool _isAlive = true;
+
+        public bool IsAlive { get => _isAlive; }
         public float Points { get => _points; }
+        public string Name { get => _name; }
 
         private Rigidbody2D _rb;
         private CapsuleCollider2D _capsuleCollider;
@@ -31,6 +37,7 @@ namespace Abstracts
                 {
                     _health = 0;
                     AddScore(Points);
+                    _isAlive = false;
                     IsDead?.Invoke();
                     gameObject.SetActive(false);
                 }

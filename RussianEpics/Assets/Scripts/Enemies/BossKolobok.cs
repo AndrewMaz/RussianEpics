@@ -15,7 +15,7 @@ public class BossKolobok : Enemy
     [SerializeField] private float jumpInterval = 2f;
 
     private bool _shouldJump = true;
-    private float _speed = 1.5f;
+    private float _speed = 1f;
 
     void Start()
     {
@@ -43,7 +43,6 @@ public class BossKolobok : Enemy
         StartTimer();
         StartCoroutine(ActionCooldown(jumpInterval));
     }
-
     private IEnumerator ActionCooldown(float interval)
     {
         while (true) 
@@ -60,7 +59,7 @@ public class BossKolobok : Enemy
     {
         while (true) 
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2.5f);
 
             SetSpeed(_speed = -_speed);
         }

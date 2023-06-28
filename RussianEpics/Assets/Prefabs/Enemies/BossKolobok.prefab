@@ -260,7 +260,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7828128125593786093}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79fe3d3e51460714cbeb87a2f000cee6, type: 3}
   m_Name: 
@@ -271,11 +271,12 @@ MonoBehaviour:
   _damageArea: {fileID: 983655716438324617}
   _damage: 0
   _animator: {fileID: 4946861072493510499}
-  _points: 500
+  _points: 50
   _health: 6
+  _name: "\u041A\u043E\u043B\u043E\u0431\u043E\u043A"
   _minForce: 15000
   _maxForce: 25000
   _jumpChance: 75
-  _lifeTime: 10
+  _lifeTime: 12
   _startHealth: 6
   jumpInterval: 2

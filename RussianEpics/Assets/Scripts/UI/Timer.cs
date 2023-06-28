@@ -38,6 +38,10 @@ public class Timer : MonoBehaviour
     {
         _timerActive = false;
     }
+    public void ContinueTimer()
+    {
+        _timerActive = true;
+    }
     public void TakeAction()
     {
         StopTimer();

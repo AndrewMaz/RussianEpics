@@ -423,6 +423,7 @@ MonoBehaviour:
   _animator: {fileID: 3111230840200975374}
   _points: 50
   _health: 3
+  _name: "\u0411\u0430\u0431\u0430-\u042F\u0433\u0430"
   _startHealth: 3
   _model: {fileID: 3111230840200975360}
   _invTime: 3

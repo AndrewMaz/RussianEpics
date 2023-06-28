@@ -15,6 +15,8 @@ public class GameplayEntryPoint : MonoBehaviour
     [SerializeField] private SpeedControlService _speedControlService;
     [SerializeField] private StartFloor _startFloor;
     [SerializeField] private Timer _timer;
+    [SerializeField] private EventsSystem _eventsSystem;
+    [SerializeField] private Dialogue _dialogue;
     [Space]
     [Header("Плеера")]
     [SerializeField] private Player[] _players;
@@ -35,11 +37,12 @@ public class GameplayEntryPoint : MonoBehaviour
     private ScoreSystem _scoreSystem;
     private void Awake()
     {
-        _bossService = new BossCharacteristicsService(_enemyChecker);
+        _bossService = new BossCharacteristicsService(_enemyChecker, _eventsSystem);
         _scoreSystem = new ScoreSystem(_thresholds);
         _bossHUD.Initialize(_bossService);
         _spawner.Initialize(_scoreSystem, _speedControlService, _bossService, _timer);
         _startFloor.Initialize(_scoreSystem, _speedControlService, _timer);
+        _eventsSystem.Initialize(_dialogue, _speedControlService, _timer);
     }
     public void Initialize()
     {
