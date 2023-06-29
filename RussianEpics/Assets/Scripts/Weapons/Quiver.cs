@@ -7,16 +7,17 @@ public class Quiver : Weapon
 {
     [SerializeField] private Arrow _arrow;
 
-    private readonly Queue<WeaponRune> _quiver = new ();
+    private readonly Queue<WeaponRune> _quiverQueue = new ();
 
     public override void Attack(Vector2 firePosition, float time)
     {
         if (!CanShoot(firePosition, time))
            return;
 
-        if(_quiver.Count > 0)
+        if(_quiverQueue.Count > 0)
         {
-            var arrowRune = _quiver.Dequeue();
+            var arrowRune = _quiverQueue.Dequeue();
+            DequeueInvoke();
           
             switch(arrowRune) 
             {
@@ -36,18 +37,14 @@ public class Quiver : Weapon
             InstantiateArrow(firePosition, Force * time, _arrow.gameObject);
         }
     }
-
     protected override bool CanShoot(Vector2 firePosition, float time)
         => firePosition.x - transform.position.x > ShootingMinDistance && time > ShootingDelay;
-
     public override void ApplyRune(WeaponRune rune)
-        => _quiver.Enqueue(rune);
-
+        => _quiverQueue.Enqueue(rune);
     private void InstantiateArrow(Vector2 firePosition, float force, GameObject arrowPrefab)
     {
         var instance = Instantiate(arrowPrefab, gameObject.transform.position, gameObject.transform.rotation);
         if (instance.TryGetComponent(out Arrow arrow))
             arrow.Fly(transform.position, firePosition, force);
     }
-
 }

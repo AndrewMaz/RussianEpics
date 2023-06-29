@@ -50,8 +50,7 @@ public class BossYaga : Enemy
     public void Apply()
     {
         SetSpeed(newSpeed);
-        SwitchColider(true);
-        _bossShield.gameObject.SetActive(false);
+        _invTimer = 0;
     }
 
     public override void React()

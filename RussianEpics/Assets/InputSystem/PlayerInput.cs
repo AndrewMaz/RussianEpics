@@ -33,6 +33,7 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
         _camera = camera;
         _trajectory = trajectory;
         _speedControlService = speedControlService;
+
         enabled = true;
     }
     private void Awake()

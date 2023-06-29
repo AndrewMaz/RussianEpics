@@ -47,8 +47,8 @@ public class GameplayEntryPoint : MonoBehaviour
     public void Initialize()
     {
         //Players Characteristics Services
-        _allCharacteristicsServices.Add(_bowCharacteristicsService = new PlayerCharacteristicsService(_bowWeapon, _speedControlService, _maxHealth));
-        _allCharacteristicsServices.Add(_hammerCharacteristicsService = new PlayerCharacteristicsService(_hammerWeapon, _speedControlService, _maxHealth));
+        _allCharacteristicsServices.Add(_bowCharacteristicsService = new PlayerCharacteristicsService(_bowWeapon, _speedControlService, _maxHealth, _playerHUD));
+        _allCharacteristicsServices.Add(_hammerCharacteristicsService = new PlayerCharacteristicsService(_hammerWeapon, _speedControlService, _maxHealth, _playerHUD));
         //Player HUD
         _playerHUD.Initialize(_allCharacteristicsServices.ToArray(), _maxHealth);
         _playerHUD.gameObject.SetActive(true);

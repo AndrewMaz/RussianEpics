@@ -12,6 +12,8 @@ public class Bootstrapper : MonoBehaviour
     private GameplayEntryPoint _gameplayEntryPoint;
     private MenuHUD _menuHUD;
 
+    private int _playerIndex;
+
     private bool _isRestarted = false;
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class Bootstrapper : MonoBehaviour
         if (_isRestarted)
         {
             _isRestarted = false;
+            _gameplayEntryPoint.SwitchPlayer(_playerIndex);
 
             StartGame();
         }
@@ -65,11 +68,13 @@ public class Bootstrapper : MonoBehaviour
     }
     private void ChangePlayerToBow()
     {
-        _gameplayEntryPoint.SwitchPlayer(0);
+        _playerIndex = 0;
+        _gameplayEntryPoint.SwitchPlayer(_playerIndex);
     }
     private void ChangePlayerToHammer()
     {
-        _gameplayEntryPoint.SwitchPlayer(1);
+        _playerIndex = 1;
+        _gameplayEntryPoint.SwitchPlayer(_playerIndex);
     }
     IEnumerator LoadSceneWithWait()
     {

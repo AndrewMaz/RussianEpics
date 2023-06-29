@@ -45,7 +45,7 @@ public class EventsSystem : MonoBehaviour
         if (i == fileLines.Count)
         {
             _speedControlService.StopSpeed();
-            _dialogue.StartDialogue();
+            _dialogue.StartDialogue(bossName);
             _timer.StopTimer();
         }
     }

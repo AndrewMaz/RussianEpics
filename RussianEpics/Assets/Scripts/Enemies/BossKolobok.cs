@@ -11,7 +11,6 @@ public class BossKolobok : Enemy
     [SerializeField] private float _maxForce = 1000f;
     [SerializeField] private float _jumpChance = 75f;
     [SerializeField] private float _lifeTime;
-    [SerializeField] private int _startHealth = 6;
     [SerializeField] private float jumpInterval = 2f;
 
     private bool _shouldJump = true;
@@ -19,7 +18,6 @@ public class BossKolobok : Enemy
 
     void Start()
     {
-        Health = _startHealth;
         StartCoroutine(SpeedChange());
     }
     void Update()
@@ -68,6 +66,8 @@ public class BossKolobok : Enemy
     {
         StopAllCoroutines();
         SetSpeed(-3f);
-        Destroy(this, 5);
+        SetRbStatic();
+        SwitchColider(false);
+        Destroy(gameObject, 5f);
     }
 }

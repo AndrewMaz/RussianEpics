@@ -11,7 +11,7 @@ public class Hammer : Weapon
     [SerializeField] private Hammer _hammerPrefab;
     [SerializeField] private GameObject _shatter;
 
-    private readonly Queue<WeaponRune> _hammer = new();
+    private readonly Queue<WeaponRune> _hammerQueue = new();
 
     private readonly int damage = 2;
 
@@ -47,7 +47,7 @@ public class Hammer : Weapon
         target.GetDamage(damage, this);
     }
     public override void ApplyRune(WeaponRune rune)
-        => _hammer.Enqueue(rune);
+        => _hammerQueue.Enqueue(rune);
     protected override bool CanShoot(Vector2 firePosition, float time)
         => firePosition.x - transform.position.x > ShootingMinDistance && time > ShootingDelay;
     public override void Attack(Vector2 firePosition, float force)
@@ -55,9 +55,10 @@ public class Hammer : Weapon
         if (!CanShoot(firePosition, force))
             return;
 
-        if (_hammer.Count > 0)
+        if (_hammerQueue.Count > 0)
         {
-            var arrowRune = _hammer.Dequeue();
+            var arrowRune = _hammerQueue.Dequeue();
+            DequeueInvoke();
 
             switch (arrowRune)
             {
@@ -115,7 +116,7 @@ public class Hammer : Weapon
     private IEnumerator ThrowCD()
     {
         _isThrowCD = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
 
         _isThrowCD = false;
     }

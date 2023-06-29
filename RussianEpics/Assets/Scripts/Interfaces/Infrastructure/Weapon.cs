@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Interfaces.Infrastructure
 {
@@ -11,7 +12,13 @@ namespace Assets.Scripts.Interfaces.Infrastructure
         public float ShootingDelay => _shootingDelay;
         public float ShootingMinDistance => _shootingMinDistance;
         public float Force => _force;
-    
+
+        public event Action OnDequeue;
+        
+        protected void DequeueInvoke()
+        {
+            OnDequeue?.Invoke();
+        }
         protected abstract bool CanShoot(Vector2 firePosition, float time);
         public abstract void Attack(Vector2 firePosition, float force);
         public abstract void ApplyRune(WeaponRune rune);

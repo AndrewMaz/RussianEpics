@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private List<string> _lines;
     [SerializeField] private float _textSpeed;
     [SerializeField] private GameObject _panel;
-    [SerializeField] private Animator _firstAnimator;
-    [SerializeField] private Animator _secondAnimator;
+    [SerializeField] private Image _playerImage;
+    [SerializeField] private Image _anotherImage;
+    [SerializeField] private List<Sprite> _sprites;
 
     private int index;
 
@@ -41,16 +43,22 @@ public class Dialogue : MonoBehaviour
     {
         _lines.Add(line);
     }
-    public void StartDialogue()
+    public void StartDialogue(string bossName)
     {
         index = 0;
         _panel.SetActive(true);
+        foreach (var sprite in _sprites)
+        {
+            if (bossName.Contains(sprite.name))
+            {
+                _anotherImage.sprite = sprite;
+                break;
+            }
+        }
         StartCoroutine(TypeLine());
     }
     private IEnumerator TypeLine()
     {
-        //_firstAnimator.SetBool("isTalking", _isTalking);
-
         foreach (char c in _lines[index].ToCharArray())
         {
             _text.text += c;
@@ -59,9 +67,7 @@ public class Dialogue : MonoBehaviour
     }
     private void NextLine()
     {
-        //_secondAnimator.SetBool("isTalking", _isTalking);
-        _isTalking = !_isTalking;
-        //_firstAnimator.SetBool("isTalking", _isTalking);
+        SwitchActors();
 
         if (index < _lines.Count - 1)
         {
@@ -75,6 +81,16 @@ public class Dialogue : MonoBehaviour
             _text.text = string.Empty;
             OnFinished?.Invoke();
             _panel.SetActive(false);
+            ResetActors();
         }
+    }
+    private void SwitchActors()
+    {
+        (_anotherImage.gameObject.transform.localScale, _playerImage.gameObject.transform.localScale) = (_playerImage.gameObject.transform.localScale, _anotherImage.gameObject.transform.localScale);
+    }
+    private void ResetActors()
+    {
+        _anotherImage.gameObject.transform.localScale = Vector3.one;
+        _playerImage.gameObject.transform.localScale = Vector3.one * 1.2f;
     }
 }

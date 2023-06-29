@@ -26,6 +26,7 @@ public class ChunkSpawner : MonoBehaviour
     private SpeedControlService _speedControlService;
     private BossCharacteristicsService _bossCharacteristicsService;
     private Timer _timer;
+    private Projectile _projectile;
     private void Start()
     {
         SpawnNextChunk();

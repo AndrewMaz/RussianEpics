@@ -12,17 +12,22 @@ public class PlayerCharacteristicsService
 
     private int _currentHealth, _maxHealth;
 
+    private PlayerHUD _playerHUD;
+
     public event Action IsPlayerDead;
     public event Action<int> IsPlayerDamaged;
 
-    public PlayerCharacteristicsService(Weapon weapon, SpeedControlService speedControlService, int maxHealth) // armor // 
+    public PlayerCharacteristicsService(Weapon weapon, SpeedControlService speedControlService, int maxHealth, PlayerHUD playerHUD) // armor // 
     {
         _weapon = weapon;
         _speedControlService = speedControlService;
         _currentHealth = _maxHealth = maxHealth;
+        _playerHUD = playerHUD;
     }
     public void UseRune(Rune rune)
     {
+        _playerHUD.AddToHUD(rune);
+
         switch (rune)
         {
             case HealthRune healthRune:  // BuffRune
@@ -56,5 +61,13 @@ public class PlayerCharacteristicsService
             _speedControlService.StopSpeed();
             IsPlayerDead?.Invoke();
         }
+    }
+    public void SubscribeToWeapon(Action methodName)
+    {
+        _weapon.OnDequeue += methodName;
+    }
+    public void UnsibscribeToWeapon(Action methodName)
+    {
+        _weapon.OnDequeue -= methodName;
     }
 }

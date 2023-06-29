@@ -272,11 +272,10 @@ MonoBehaviour:
   _damage: 0
   _animator: {fileID: 4946861072493510499}
   _points: 50
-  _health: 6
+  _health: 5
   _name: "\u041A\u043E\u043B\u043E\u0431\u043E\u043A"
   _minForce: 15000
   _maxForce: 25000
   _jumpChance: 75
-  _lifeTime: 12
-  _startHealth: 6
+  _lifeTime: 13
   jumpInterval: 2
