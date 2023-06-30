@@ -57,7 +57,7 @@ public class BossKolobok : Enemy
     {
         while (true) 
         {
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSecondsRealtime(2.5f);
 
             SetSpeed(_speed = -_speed);
         }

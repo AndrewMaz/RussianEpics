@@ -1558,6 +1558,8 @@ MonoBehaviour:
   _jumpButton: {fileID: 4325792231834331334}
   _healthSlider: {fileID: 4325792232860765943}
   _powerSlider: {fileID: 7386238472980619584}
+  _runeIcons: {fileID: 0}
+  _runeIcon: {fileID: 0}
 --- !u!1 &4325792231567738078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,7 +2248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6506483763451144748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2285,6 +2287,7 @@ MonoBehaviour:
   _deathText: {fileID: 1700443316855978435}
   _resumeButton: {fileID: 1700443315156861475}
   _menuButton: {fileID: 6506483764870612583}
+  _stopwatch: {fileID: 0}
 --- !u!1 &6506483763536381434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 6506483764004333194}
+  _bossName: {fileID: 0}
 --- !u!1 &6506483764762762726
 GameObject:
   m_ObjectHideFlags: 0

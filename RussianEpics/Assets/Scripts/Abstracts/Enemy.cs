@@ -37,7 +37,7 @@ namespace Abstracts
                 {
                     _health = 0;
                     AddScore(Points);
-                    _isAlive = false;
+                    SetDead();
                     IsDead?.Invoke();
                     gameObject.SetActive(false);
                 }
@@ -105,6 +105,10 @@ namespace Abstracts
         protected void SetHealth(int value)
         {
             _health = value;
+        }
+        protected void SetDead()
+        {
+            _isAlive = false;
         }
     }
 }

@@ -14,6 +14,7 @@ public class Kolobok : Enemy
     }
     public override void React()
     {
+        if (!IsAlive) return;
         SetSpeed(newSpeed);
     }
     public override void GetDamage(int damage, object sender)
@@ -22,6 +23,7 @@ public class Kolobok : Enemy
         {
             base.GetDamage(damage, sender);
             SetSpeed(_startSpeed);
+            SetDead();
         }
     }
 }

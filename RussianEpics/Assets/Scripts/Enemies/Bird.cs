@@ -15,6 +15,8 @@ public class Bird : Enemy
     }
     public override void React()
     {
+        if (!IsAlive) return;
+
         SetAnimatorTrigger("attack");
         SetSpeed(0f);
         StartCoroutine(StartAttack());
@@ -25,6 +27,8 @@ public class Bird : Enemy
         AddColiderOffset(Vector2.up);
         SetRbDinamic();
         SetSpeed(_startSpeed);
+        SetDead();
+        AddScore(Points);
     }
     private IEnumerator StartAttack()
     {

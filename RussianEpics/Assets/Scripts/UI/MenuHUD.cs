@@ -1,28 +1,30 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuHUD : MonoBehaviour
 {
-    [SerializeField] GameObject _menuPanel;
-    [SerializeField] GameObject _deathText;
-    [SerializeField] Button _resumeButton;
-    [SerializeField] Button _menuButton;
-    [SerializeField] Stopwatch _stopwatch;
+    [SerializeField] private GameObject _menuPanel;
+    [SerializeField] private GameObject _deathPanel;
+    [SerializeField] private Button _menuButton;
+    [SerializeField] private Stopwatch _stopwatch;
+    [SerializeField] private TextMeshProUGUI _finalScoreText;
 
-    PlayerCharacteristicsService[] _playerCharacteristicsService;
-    SpeedControlService _speedControlService;
+    private PlayerCharacteristicsService[] _playerCharacteristicsService;
+    private ScoreSystem _scoreSystem;
 
     public event Action IsRestart;
     public event Action IsQuit;
-    public void Initialize(PlayerCharacteristicsService[] playerCharacteristicsService, SpeedControlService speedControlService)
+    public void Initialize(PlayerCharacteristicsService[] playerCharacteristicsService, ScoreSystem scoreSystem)
     {
         _playerCharacteristicsService = playerCharacteristicsService;
-        _speedControlService = speedControlService;
         _menuButton.gameObject.SetActive(true);
         _stopwatch.StartStopwatch();
+        _scoreSystem = scoreSystem;
+
         enabled = true;
     }
     private void OnEnable()
@@ -42,8 +44,6 @@ public class MenuHUD : MonoBehaviour
     public void Pause()
     {
         _menuPanel.SetActive(true);
-        _resumeButton.interactable = true;
-        _deathText.SetActive(false);
         Time.timeScale = 0f;
         _stopwatch.StopStopwatch();
         _stopwatch.UpdateUI();
@@ -65,9 +65,8 @@ public class MenuHUD : MonoBehaviour
     }
     private void ShowDeathUI()
     {
-        _menuPanel.SetActive(true);
-        _resumeButton.interactable = false;
+        _deathPanel.SetActive(true);
+        _finalScoreText.text = "Î×ÊÈ: \n" + _scoreSystem.TotalScore.ToString();         // + Environment.NewLine
         _menuButton.gameObject.SetActive(false);
-        _deathText.SetActive(true);
     }
 }

@@ -1,6 +1,7 @@
 using Assets.Scripts.Interfaces.Infrastructure;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplayEntryPoint : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameplayEntryPoint : MonoBehaviour
     [SerializeField] private Timer _timer;
     [SerializeField] private EventsSystem _eventsSystem;
     [SerializeField] private Dialogue _dialogue;
+    [SerializeField] private Image _playerImage;
     [Space]
     [Header("Плеера")]
     [SerializeField] private Player[] _players;
@@ -28,6 +30,8 @@ public class GameplayEntryPoint : MonoBehaviour
     [Space]
     [Header("Пороги очков")]
     [SerializeField] private float[] _thresholds;
+    [Header("Префабы")]
+    [SerializeField] Sprite[] _playerSprites;
 
     private PlayerCharacteristicsService _bowCharacteristicsService;
     private PlayerCharacteristicsService _hammerCharacteristicsService;
@@ -43,6 +47,7 @@ public class GameplayEntryPoint : MonoBehaviour
         _spawner.Initialize(_scoreSystem, _speedControlService, _bossService, _timer);
         _startFloor.Initialize(_scoreSystem, _speedControlService, _timer);
         _eventsSystem.Initialize(_dialogue, _speedControlService, _timer);
+        SwitchPlayer(0);
     }
     public void Initialize()
     {
@@ -65,7 +70,7 @@ public class GameplayEntryPoint : MonoBehaviour
             i++;
         }
         //Pause Menu
-        _menuHUD.Initialize(_allCharacteristicsServices.ToArray(), _speedControlService);
+        _menuHUD.Initialize(_allCharacteristicsServices.ToArray(), _scoreSystem);
         _spawner.StartGame();
         //SpeedControl Service
         _speedControlService.ResetSpeed();
@@ -79,5 +84,13 @@ public class GameplayEntryPoint : MonoBehaviour
         }
 
         _players[playerIndex].gameObject.SetActive(true);
+        if (_playerSprites.Length >= playerIndex)
+        {
+            _playerImage.sprite = _playerSprites[playerIndex];
+        }
+        else
+        {
+            _playerImage.sprite = _playerSprites[0];
+        }
     }
 }
