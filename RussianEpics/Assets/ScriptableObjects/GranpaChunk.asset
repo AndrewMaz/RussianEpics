@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b0c0d41f86a9743add5c7740350bd0, type: 3}
+  m_Name: GranpaChunk
+  m_EditorClassIdentifier: 
+  Segments:
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+    - {fileID: 3828582118850274415, guid: 35aef6b3f2db5d94c84004e8b0abe146, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}
+  - Spawnables:
+    - {fileID: 7025589906735791971, guid: e1b2b0de166ddb94790d8b4c1d7f75b9, type: 3}

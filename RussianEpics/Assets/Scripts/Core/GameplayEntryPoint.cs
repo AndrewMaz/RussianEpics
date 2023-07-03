@@ -37,11 +37,13 @@ public class GameplayEntryPoint : MonoBehaviour
     private PlayerCharacteristicsService _hammerCharacteristicsService;
     private List<PlayerCharacteristicsService> _allCharacteristicsServices = new();
 
+    private EventService _eventService;
     private BossCharacteristicsService _bossService;
     private ScoreSystem _scoreSystem;
     private void Awake()
     {
         _bossService = new BossCharacteristicsService(_enemyChecker, _eventsSystem);
+        _eventService = new EventService(_enemyChecker, _eventsSystem);
         _scoreSystem = new ScoreSystem(_thresholds);
         _bossHUD.Initialize(_bossService);
         _spawner.Initialize(_scoreSystem, _speedControlService, _bossService, _timer);
