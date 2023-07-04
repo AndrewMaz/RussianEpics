@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Abstracts
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public abstract class Enemy : SpawnElement, IDamageable
+    public abstract class Enemy : SpawnElement, IDamageable, IPointable
     {
         [SerializeField] private DamageArea _damageArea;
         [SerializeField] private int _damage;
@@ -18,7 +18,6 @@ namespace Abstracts
         private bool _isAlive = true;
 
         public bool IsAlive { get => _isAlive; }
-        public float Points { get => _points; }
         public string Name { get => _name; }
 
         private Rigidbody2D _rb;
@@ -36,7 +35,7 @@ namespace Abstracts
                 if (_health <= 0)
                 {
                     _health = 0;
-                    AddScore(Points);
+                    AddPoints(this);
                     SetDead();
                     IsDead?.Invoke();
                     gameObject.SetActive(false);
@@ -72,7 +71,7 @@ namespace Abstracts
             SetAnimatorTrigger("takeDamage");
             SetRbStatic();
             AddColiderOffset(Vector2.down);
-            AddScore(_points);
+            AddPoints(this);
         }
         public virtual void React()
         {
@@ -109,6 +108,11 @@ namespace Abstracts
         protected void SetDead()
         {
             _isAlive = false;
+        }
+
+        public float GetPoints()
+        {
+            return _points;
         }
     }
 }

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,13 +28,13 @@ public class EventsSystem : MonoBehaviour
     {
         _dialogue.OnFinished -= ResetSpeed;
     }
-    public void SetDialogue(string bossName)
+    public void SetDialogue(Event eventItem)
     {
-        if (!File.Exists(Application.streamingAssetsPath + "/Dialogues/" + bossName + ".txt"))
+        if (!File.Exists(Application.streamingAssetsPath + "/Dialogues/" + eventItem.GetType().ToString() + ".txt"))
         {
             return;
         }
-        string readFromFilePath = Application.streamingAssetsPath + "/Dialogues/" + bossName + ".txt";
+        string readFromFilePath = Application.streamingAssetsPath + "/Dialogues/" + eventItem.GetType().ToString() + ".txt";
 
         List<string> fileLines = File.ReadAllLines(readFromFilePath).ToList();
 
@@ -45,7 +47,7 @@ public class EventsSystem : MonoBehaviour
         if (i == fileLines.Count)
         {
             _speedControlService.StopSpeed();
-            _dialogue.StartDialogue(bossName);
+            _dialogue.StartDialogue(eventItem.GetType().ToString());
             _timer.StopTimer();
         }
     }

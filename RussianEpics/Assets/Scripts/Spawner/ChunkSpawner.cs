@@ -36,18 +36,16 @@ public class ChunkSpawner : MonoBehaviour
     private void OnEnable()
     {
         _scoreSystem.OnThreshold += HandleTreshold;
-        _bossCharacteristicsService.IsDead += HandleIndex;
     }
     private void OnDisable()
     {
         _scoreSystem.OnThreshold -= HandleTreshold;
         _bossCharacteristicsService.IsDead -= HandleIndex;
     }
-    public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, BossCharacteristicsService bossCharacteristicsService, Timer timer)
+    public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer)
     {
         _scoreSystem = scoreSystem;
         _speedControlService = speedControlService;
-        _bossCharacteristicsService = bossCharacteristicsService;
         _timer = timer;
 
         enabled = true;

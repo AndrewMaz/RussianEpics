@@ -1,54 +1,62 @@
 using Abstracts;
+using System.Collections.Generic;
 
 public class EventService
 {
     private EnemyChecker _enemyChecker;
     private EventsSystem _eventsSystem;
+    private ScoreSystem _scoreSystem;
+
+    private List<Event> _allEvents = new();
+    private List<Event> _finishedEvents = new();
 
     Enemy _boss = null;
-    NPC _npc;
-    public EventService(EnemyChecker enemyChecker, EventsSystem eventsSystem)
+    Event _event;
+    public EventService(EnemyChecker enemyChecker, EventsSystem eventsSystem, ScoreSystem scoreSystem)
     {
         _enemyChecker = enemyChecker;
         _eventsSystem = eventsSystem;
 
-        _enemyChecker.IsBossShowed += ActivateBossDialogue;
         _enemyChecker.OnEventShowed += StartEvent;
+        _scoreSystem.OnThreshold += InvokeEvent;
     }
-    private void StartEvent(NPC npc)
+    private void StartEvent(Event eventItem)
     {
-        _npc = npc;
-
-        if (_npc.IsFailed == null)
-        {
-            _eventsSystem.SetDialogue(npc.Name);
-            _npc.FailQuest();
-            return;
-        }
-        if ((bool)_npc.IsFailed)
-        {
-            _eventsSystem.SetDialogue(npc.Name + "Failed");
-        }
-        else if (!(bool)_npc.IsFailed)
-        {
-            _eventsSystem.SetDialogue(npc.Name + "Succesed");
-        }
-    }
-    private void ActivateBossDialogue(Enemy boss)
-    {
-        _boss = boss;
-        _boss.IsDead += EndEvent;
-
-        _eventsSystem.SetDialogue(_boss.Name + "Start");
+        _event = eventItem;
+        _eventsSystem.SetDialogue(eventItem);
     }
     private void EndEvent()
+    {       
+        _eventsSystem.SetDialogue(_event);
+    }
+    public void InvokeEvent()
     {
-        if (_boss != null && !_boss.IsAlive)
+        foreach (var eventItem in _allEvents)
         {
-            _eventsSystem.SetDialogue(_boss.Name + "End");
+            if (_finishedEvents.Contains(eventItem))
+            {
+                continue;
+            }
 
-            _boss.IsDead -= EndEvent;
-            _boss = null;
+            eventItem.Start();
+            break;
         }
+    }
+    private void ResetList()
+    {
+        _finishedEvents.Clear();
+    }
+    public void AddEvent(Event eventItem)
+    {
+        _allEvents.Add(eventItem);
+    }
+    public void AddFinishedEvent(Event eventItem)
+    {
+        _finishedEvents.Add(eventItem);
+    }
+    ~EventService() 
+    {
+        _scoreSystem.OnThreshold -= InvokeEvent;
+        _enemyChecker.OnEventShowed -= StartEvent;
     }
 }

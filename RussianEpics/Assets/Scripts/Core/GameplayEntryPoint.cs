@@ -1,4 +1,5 @@
 using Assets.Scripts.Interfaces.Infrastructure;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,8 +55,8 @@ public class GameplayEntryPoint : MonoBehaviour
     public void Initialize()
     {
         //Players Characteristics Services
-        _allCharacteristicsServices.Add(_bowCharacteristicsService = new PlayerCharacteristicsService(_bowWeapon, _speedControlService, _maxHealth, _playerHUD));
-        _allCharacteristicsServices.Add(_hammerCharacteristicsService = new PlayerCharacteristicsService(_hammerWeapon, _speedControlService, _maxHealth, _playerHUD));
+        _allCharacteristicsServices.Add(_bowCharacteristicsService = new PlayerCharacteristicsService(_bowWeapon, _speedControlService, _maxHealth, _playerHUD, _scoreSystem));
+        _allCharacteristicsServices.Add(_hammerCharacteristicsService = new PlayerCharacteristicsService(_hammerWeapon, _speedControlService, _maxHealth, _playerHUD, _scoreSystem));
         //Player HUD
         _playerHUD.Initialize(_allCharacteristicsServices.ToArray(), _maxHealth);
         _playerHUD.gameObject.SetActive(true);

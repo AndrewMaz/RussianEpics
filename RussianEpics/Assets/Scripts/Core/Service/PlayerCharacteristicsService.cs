@@ -1,28 +1,28 @@
 using Abstracts;
 using Assets.Scripts.Interfaces.Infrastructure;
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerCharacteristicsService
 {
-    [SerializeField] float pointsForRune = 150f;
+    private int _currentHealth, _maxHealth;
 
     private Weapon _weapon;
     private SpeedControlService _speedControlService;
-
-    private int _currentHealth, _maxHealth;
-
     private PlayerHUD _playerHUD;
+    private ScoreSystem _scoreSystem;
 
     public event Action IsPlayerDead;
     public event Action<int> IsPlayerDamaged;
 
-    public PlayerCharacteristicsService(Weapon weapon, SpeedControlService speedControlService, int maxHealth, PlayerHUD playerHUD) // armor // 
+    public PlayerCharacteristicsService(Weapon weapon, SpeedControlService speedControlService, int maxHealth, PlayerHUD playerHUD, ScoreSystem scoreSystem) // armor // 
     {
         _weapon = weapon;
         _speedControlService = speedControlService;
         _currentHealth = _maxHealth = maxHealth;
         _playerHUD = playerHUD;
+        _scoreSystem = scoreSystem;
     }
     public void UseRune(Rune rune)
     {
@@ -37,7 +37,7 @@ public class PlayerCharacteristicsService
                 _weapon.ApplyRune(arrowRune);
                 break;
             case BossRune bossRune:
-                bossRune.AddScore(pointsForRune);
+                _scoreSystem.AddPoints(bossRune);
                 break;
             case SlowRune:
                 _speedControlService.ChangeSpeed();

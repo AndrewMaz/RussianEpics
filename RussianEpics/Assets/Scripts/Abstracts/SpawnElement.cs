@@ -1,3 +1,4 @@
+using Assets.Scripts.Interfaces;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -54,10 +55,6 @@ namespace Abstracts
             _atlas.GetSprites(sprites);
             Stage = 0;
         }
-        public void AddScore(float amount)
-        {
-            _scoreSystem.AddPoints(amount);
-        }
         public void SetStage(int stage)
         {
             Stage = stage;
@@ -77,6 +74,10 @@ namespace Abstracts
         protected void SetTimer(float seconds)
         {
             _timer.StartSeconds = seconds;
+        }
+        protected void AddPoints(IPointable pointable)
+        {
+            _scoreSystem.AddPoints(pointable);
         }
         public virtual void ReactToTimer()
         {

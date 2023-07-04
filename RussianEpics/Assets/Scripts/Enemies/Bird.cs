@@ -28,7 +28,7 @@ public class Bird : Enemy
         SetRbDinamic();
         SetSpeed(_startSpeed);
         SetDead();
-        AddScore(Points);
+        AddPoints(this);
     }
     private IEnumerator StartAttack()
     {

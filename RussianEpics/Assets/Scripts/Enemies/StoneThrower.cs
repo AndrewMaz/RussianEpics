@@ -18,7 +18,7 @@ public class StoneThrower : Enemy
         SetAnimatorTrigger("takeDamage");
         SetRbDinamic();
         ThrowStone();
-        AddScore(Points);
+        AddPoints(this);
     }
     private IEnumerator StartAttack()
     {

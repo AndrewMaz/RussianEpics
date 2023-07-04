@@ -1,3 +1,4 @@
+using Assets.Scripts.Interfaces;
 using System;
 using System.Linq;
 
@@ -17,9 +18,9 @@ public class ScoreSystem
     {
         _thresholds = thresholds;
     }
-    public void AddPoints(float amount)
+    public void AddPoints(IPointable pointable)
     {
-        _totalScore += amount;
+        _totalScore += pointable.GetPoints();
         OnScoreChange?.Invoke();
         
         if (counter <= _thresholds.Count() - 1 && _totalScore >= _thresholds[counter]) 

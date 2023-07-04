@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyChecker : MonoBehaviour
 {
     public event Action<Enemy> IsBossShowed;
-    public event Action<NPC> OnEventShowed;
+    public event Action<Event> OnEventShowed;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Enemy enemy))
@@ -19,9 +19,9 @@ public class EnemyChecker : MonoBehaviour
             IsBossShowed?.Invoke(enemy);
             gameObject.SetActive(false);
         }
-        else if (collision.TryGetComponent(out NPC npc))
+        else if (collision.TryGetComponent(out Event eventItem))
         {
-            OnEventShowed?.Invoke(npc);
+            OnEventShowed?.Invoke(eventItem);
         }
     }
 }

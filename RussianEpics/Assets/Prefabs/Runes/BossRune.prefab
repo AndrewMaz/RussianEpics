@@ -279,4 +279,4 @@ MonoBehaviour:
   _atlas: {fileID: 0}
   _spriteToChange: {fileID: 0}
   sprites: []
-  points: 50
+  _points: 150

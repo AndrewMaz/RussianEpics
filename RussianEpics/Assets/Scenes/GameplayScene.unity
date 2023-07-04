@@ -3720,7 +3720,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29857a637827f4748a3808a1a3e0427e, type: 2}
   - {fileID: 11400000, guid: 1081c2a8f5088d046b0cf9d349cad2b1, type: 2}
   - {fileID: 11400000, guid: a77106f9a66393146a49af956b557bd3, type: 2}
-  - {fileID: 11400000, guid: 614df3286a412e049a62be27f5293664, type: 2}
   _chunks2:
   - {fileID: 11400000, guid: 662c31e225d0a71498e5013c060c80de, type: 2}
   - {fileID: 11400000, guid: a4c0440ae007f304988da0e339b26cc1, type: 2}
@@ -3731,7 +3730,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9cdea4740a831d743a8a8d2b027d59d0, type: 2}
   - {fileID: 11400000, guid: 1081c2a8f5088d046b0cf9d349cad2b1, type: 2}
   - {fileID: 11400000, guid: a77106f9a66393146a49af956b557bd3, type: 2}
-  - {fileID: 11400000, guid: 614df3286a412e049a62be27f5293664, type: 2}
 --- !u!4 &952282164
 Transform:
   m_ObjectHideFlags: 0
