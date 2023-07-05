@@ -3,24 +3,22 @@ using System.Collections.Generic;
 
 public class EventService
 {
-    private EnemyChecker _enemyChecker;
     private EventsSystem _eventsSystem;
     private ScoreSystem _scoreSystem;
 
     private List<Event> _allEvents = new();
     private List<Event> _finishedEvents = new();
 
-    Enemy _boss = null;
     Event _event;
-    public EventService(EnemyChecker enemyChecker, EventsSystem eventsSystem, ScoreSystem scoreSystem)
+    public EventService(EventsSystem eventsSystem, ScoreSystem scoreSystem, Event[] events)
     {
-        _enemyChecker = enemyChecker;
         _eventsSystem = eventsSystem;
+        _scoreSystem = scoreSystem;
+        AddEvents(events);
 
-        _enemyChecker.OnEventShowed += StartEvent;
         _scoreSystem.OnThreshold += InvokeEvent;
     }
-    private void StartEvent(Event eventItem)
+    private void StartDialogue(Event eventItem)
     {
         _event = eventItem;
         _eventsSystem.SetDialogue(eventItem);
@@ -46,9 +44,12 @@ public class EventService
     {
         _finishedEvents.Clear();
     }
-    public void AddEvent(Event eventItem)
+    public void AddEvents(Event[] eventArray)
     {
-        _allEvents.Add(eventItem);
+        foreach (var eventItem in eventArray)
+        {
+            _allEvents.Add(eventItem);
+        }
     }
     public void AddFinishedEvent(Event eventItem)
     {
@@ -57,6 +58,5 @@ public class EventService
     ~EventService() 
     {
         _scoreSystem.OnThreshold -= InvokeEvent;
-        _enemyChecker.OnEventShowed -= StartEvent;
     }
 }

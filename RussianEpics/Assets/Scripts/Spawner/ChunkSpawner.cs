@@ -7,7 +7,7 @@ using UnityEngine;
 public class ChunkSpawner : MonoBehaviour
 {
     [SerializeField] private List<Chunk> _chunks;
-    [SerializeField] private Chunk[] _bossChunks;
+    [SerializeField] private Chunk[] _eventChunks;
     [SerializeField] private ChunkEnd _chunkEnd;
     [SerializeField] private Transform _spawnObject;
     [Space]
@@ -26,21 +26,11 @@ public class ChunkSpawner : MonoBehaviour
     private SpeedControlService _speedControlService;
     private BossCharacteristicsService _bossCharacteristicsService;
     private Timer _timer;
-    private Projectile _projectile;
     private void Start()
     {
         SpawnNextChunk();
         _chunkSets.Add(_chunks1);
         _chunkSets.Add(_chunks2);
-    }
-    private void OnEnable()
-    {
-        _scoreSystem.OnThreshold += HandleTreshold;
-    }
-    private void OnDisable()
-    {
-        _scoreSystem.OnThreshold -= HandleTreshold;
-        _bossCharacteristicsService.IsDead -= HandleIndex;
     }
     public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer)
     {
@@ -68,18 +58,24 @@ public class ChunkSpawner : MonoBehaviour
             _chunkFeed.Enqueue(chunk);
         }
     }
-    private void HandleTreshold()
+    public void HandleEvent(Event eventItem)
     {
         _chunkFeed.Clear();
-        _chunkFeed.Enqueue(_bossChunks[_currentStage]);
-
+        foreach (var chunk in _eventChunks)
+        {
+            if (chunk.name == eventItem.GetType().ToString())
+            {
+                _chunkFeed.Enqueue(chunk);
+                break;
+            }
+        }
         SetNewChunks(_chunkSets[_currentStage]);
         FillChunkFeed();
     }
     private void HandleIndex()
     {
         _currentStage++;
-        if (_currentStage == _bossChunks.Length)
+        if (_currentStage == _eventChunks.Length)
         {
             _currentStage = 0;
         }
@@ -96,14 +92,15 @@ public class ChunkSpawner : MonoBehaviour
             FillChunkFeed();
         }
 
-        var x = 0;
-        var position = transform.position;
+        float x = 0.0f;
+        Transform lastTransform = transform;
+        
         var chunk = _chunkFeed.Dequeue();
 
         foreach (var segment in chunk.Segments)
         {
             x++;
-            var y = 0;
+            float y = 0.0f;
             foreach (var element in segment.Spawnables)
             {
                 y++;
@@ -115,19 +112,21 @@ public class ChunkSpawner : MonoBehaviour
                 instantiate.name += $" {x} {y}";
 
                 instantiate.transform.position =
-                    new Vector3(position.x + x, position.y + y, 0.0f);
+                    new Vector3(lastTransform.position.x + x, lastTransform.position.y + y, 0.0f);
                 var spElement = instantiate.GetComponent<SpawnElement>();
                 spElement.Initialize(_scoreSystem, _speedControlService, _timer).SetStage(_currentStage);
+             
             }
         }
         
         var instantiate1 = Instantiate(_chunkEnd);
+        instantiate1.transform.position =
+        new Vector3(lastTransform.position.x + x + 1.0f, lastTransform.position.y, 0.0f);
+        lastTransform = instantiate1.transform;
+
         if (IsGameStarted)
         {
             instantiate1.GetComponent<SpawnElement>().Initialize(_scoreSystem, _speedControlService, _timer);
         }
-
-        instantiate1.transform.position =
-            new Vector3(position.x + x + 1, position.y, 0.0f);
     }
 }

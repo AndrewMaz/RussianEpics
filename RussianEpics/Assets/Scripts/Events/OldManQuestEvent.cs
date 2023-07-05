@@ -1,19 +1,21 @@
 
+using System;
+using UnityEngine.PlayerLoop;
+
 public class OldManQuestEvent : Event
 {
-    EventService _eventService;
-    public void Initialize(EventService eventsService)
+    ChunkSpawner _chunkSpawner;
+    public OldManQuestEvent(ChunkSpawner chunkSpawner) 
     {
-        _eventService = eventsService;
-        _eventService.AddEvent(this);
+        _chunkSpawner = chunkSpawner;
     }
     public override void Start()
     {
         base.Start();
+        _chunkSpawner.HandleEvent(this);
     }
     public override void Finish()
     {
         base.Finish();
-        _eventService.AddFinishedEvent(this);
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05b0c0d41f86a9743add5c7740350bd0, type: 3}
-  m_Name: GranpaChunk
+  m_Name: OldManQuestEvent
   m_EditorClassIdentifier: 
   Segments:
   - Spawnables:

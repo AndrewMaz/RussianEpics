@@ -41,13 +41,17 @@ public class GameplayEntryPoint : MonoBehaviour
     private EventService _eventService;
     private BossCharacteristicsService _bossService;
     private ScoreSystem _scoreSystem;
+    private Event[] _events;
     private void Awake()
     {
-        _bossService = new BossCharacteristicsService(_enemyChecker, _eventsSystem);
-        _eventService = new EventService(_enemyChecker, _eventsSystem);
         _scoreSystem = new ScoreSystem(_thresholds);
+        _spawner.Initialize(_scoreSystem, _speedControlService, _timer);
+        //Events
+        OldManQuestEvent oldManQuestEvent = new(_spawner);
+        _events = new Event[] { oldManQuestEvent };
+        _bossService = new BossCharacteristicsService(_enemyChecker, _eventsSystem);
+        _eventService = new EventService(_eventsSystem, _scoreSystem, _events);
         _bossHUD.Initialize(_bossService);
-        _spawner.Initialize(_scoreSystem, _speedControlService, _bossService, _timer);
         _startFloor.Initialize(_scoreSystem, _speedControlService, _timer);
         _eventsSystem.Initialize(_dialogue, _speedControlService, _timer);
         SwitchPlayer(0);
