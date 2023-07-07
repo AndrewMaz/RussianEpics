@@ -1,12 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-using System;
-using UnityEngine.PlayerLoop;
-
-public class OldManQuestEvent : Event
+public class KolobokEvent : Event
 {
     private DialogueSystem _dialogueSystem;
 
-    public OldManQuestEvent(DialogueSystem dialogueSystem)
+    public KolobokEvent(DialogueSystem dialogueSystem)
     {
         _dialogueSystem = dialogueSystem;
     }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using TMPro;
 
 public class PlayerHUD : MonoBehaviour, IPlayerInput
 {
@@ -14,6 +15,7 @@ public class PlayerHUD : MonoBehaviour, IPlayerInput
     [SerializeField] private Slider _powerSlider;
     [SerializeField] private Transform _runeIcons;
     [SerializeField] private GameObject _runeIcon;
+    [SerializeField] private TextMeshProUGUI _percentageText;
 
     private float _maxHealth;
 
@@ -61,6 +63,7 @@ public class PlayerHUD : MonoBehaviour, IPlayerInput
     private void Damaged(int currentHealth)
     {
         _healthSlider.value = currentHealth / _maxHealth;
+        _percentageText.text = currentHealth.ToString();
     }
     public void UpdatePowerSlider(float value)
     {

@@ -12,17 +12,19 @@ public class PlayerCharacteristicsService
     private SpeedControlService _speedControlService;
     private PlayerHUD _playerHUD;
     private ScoreSystem _scoreSystem;
+    private PlayerStats _playerStats;
 
     public event Action IsPlayerDead;
     public event Action<int> IsPlayerDamaged;
 
-    public PlayerCharacteristicsService(Weapon weapon, SpeedControlService speedControlService, int maxHealth, PlayerHUD playerHUD, ScoreSystem scoreSystem) // armor // 
+    public PlayerCharacteristicsService(Weapon weapon, SpeedControlService speedControlService, int maxHealth, PlayerHUD playerHUD, ScoreSystem scoreSystem, PlayerStats playerStats) // armor // 
     {
         _weapon = weapon;
         _speedControlService = speedControlService;
         _currentHealth = _maxHealth = maxHealth;
         _playerHUD = playerHUD;
         _scoreSystem = scoreSystem;
+        _playerStats = playerStats;
     }
     public void UseRune(Rune rune)
     {
@@ -31,7 +33,7 @@ public class PlayerCharacteristicsService
         switch (rune)
         {
             case HealthRune healthRune:  // BuffRune
-                GetDamage(-Mathf.Abs(healthRune.HealAmount), healthRune);
+                Heal((float)_playerStats.GetLvl(healthRune.GetType().ToString()) / 10f);
                 break;
             case WeaponRune arrowRune: // boostRune
                 _weapon.ApplyRune(arrowRune);
@@ -39,8 +41,11 @@ public class PlayerCharacteristicsService
             case BossRune bossRune:
                 _scoreSystem.AddPoints(bossRune);
                 break;
-            case SlowRune:
-                _speedControlService.ChangeSpeed();
+            case SlowRune slowRune:
+                _speedControlService.ChangeSpeed(_playerStats.GetLvl(slowRune.GetType().ToString()) * 2 + 1);
+                break;
+            case MaxHealthRune maxHealthRune:
+                IncreaseHealth(maxHealthRune.HealthAmount); 
                 break;
         }
     }
@@ -52,15 +57,26 @@ public class PlayerCharacteristicsService
     {
         _currentHealth -= damage;
         IsPlayerDamaged?.Invoke(_currentHealth);
-        if (_currentHealth > _maxHealth)
-        {
-            _currentHealth = _maxHealth;
-        }
+
         if (_currentHealth < 0)
         {
             _speedControlService.StopSpeed();
             IsPlayerDead?.Invoke();
         }
+    }
+    public void IncreaseHealth(int amount)
+    {
+        _maxHealth += amount;
+        _currentHealth += amount;
+    }
+    private void Heal(float multiplier)
+    {
+        _currentHealth += (int)(_maxHealth * multiplier);
+        if (_currentHealth > _maxHealth) 
+        {
+            _currentHealth = _maxHealth;
+        }
+        IsPlayerDamaged?.Invoke(_currentHealth);
     }
     public void SubscribeToWeapon(Action methodName)
     {

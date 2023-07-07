@@ -14,12 +14,14 @@ public class GameplayEntryPoint : MonoBehaviour
     [SerializeField] private MenuHUD _menuHUD;
     [SerializeField] private ScoreHUD _scoreHUD;
     [SerializeField] private EnemyChecker _enemyChecker;
+    [SerializeField] private NPCChecker _npcChecker;
     [SerializeField] private SpeedControlService _speedControlService;
     [SerializeField] private StartFloor _startFloor;
     [SerializeField] private Timer _timer;
-    [SerializeField] private EventsSystem _eventsSystem;
+    [SerializeField] private DialogueSystem _dialogueSystem;
     [SerializeField] private Dialogue _dialogue;
     [SerializeField] private Image _playerImage;
+    [SerializeField] private PlayerStats _playerStats;
     [Space]
     [Header("Плеера")]
     [SerializeField] private Player[] _players;
@@ -38,29 +40,29 @@ public class GameplayEntryPoint : MonoBehaviour
     private PlayerCharacteristicsService _hammerCharacteristicsService;
     private List<PlayerCharacteristicsService> _allCharacteristicsServices = new();
 
-    private EventService _eventService;
     private BossCharacteristicsService _bossService;
     private ScoreSystem _scoreSystem;
-    private Event[] _events;
+    private EventService _eventService;
     private void Awake()
     {
+        _bowWeapon.Initialize(_playerStats);
+        _hammerWeapon.Initialize(_playerStats);
+        _dialogueSystem.Initialize(_dialogue, _speedControlService, _timer);
         _scoreSystem = new ScoreSystem(_thresholds);
-        _spawner.Initialize(_scoreSystem, _speedControlService, _timer);
-        //Events
-        OldManQuestEvent oldManQuestEvent = new(_spawner);
-        _events = new Event[] { oldManQuestEvent };
-        _bossService = new BossCharacteristicsService(_enemyChecker, _eventsSystem);
-        _eventService = new EventService(_eventsSystem, _scoreSystem, _events);
+        _eventService = new(_dialogueSystem, _scoreSystem);
+        _enemyChecker.Initialize(_eventService);
+        _npcChecker.Initialize(_eventService);
+        _spawner.Initialize(_scoreSystem, _speedControlService, _timer, _dialogueSystem, _playerStats);
+        _bossService = new BossCharacteristicsService(_enemyChecker, _dialogueSystem);
         _bossHUD.Initialize(_bossService);
-        _startFloor.Initialize(_scoreSystem, _speedControlService, _timer);
-        _eventsSystem.Initialize(_dialogue, _speedControlService, _timer);
+        _startFloor.Initialize(_scoreSystem, _speedControlService, _timer, _dialogueSystem, _playerStats);
         SwitchPlayer(0);
     }
     public void Initialize()
     {
         //Players Characteristics Services
-        _allCharacteristicsServices.Add(_bowCharacteristicsService = new PlayerCharacteristicsService(_bowWeapon, _speedControlService, _maxHealth, _playerHUD, _scoreSystem));
-        _allCharacteristicsServices.Add(_hammerCharacteristicsService = new PlayerCharacteristicsService(_hammerWeapon, _speedControlService, _maxHealth, _playerHUD, _scoreSystem));
+        _allCharacteristicsServices.Add(_bowCharacteristicsService = new PlayerCharacteristicsService(_bowWeapon, _speedControlService, _maxHealth, _playerHUD, _scoreSystem, _playerStats));
+        _allCharacteristicsServices.Add(_hammerCharacteristicsService = new PlayerCharacteristicsService(_hammerWeapon, _speedControlService, _maxHealth, _playerHUD, _scoreSystem, _playerStats));
         //Player HUD
         _playerHUD.Initialize(_allCharacteristicsServices.ToArray(), _maxHealth);
         _playerHUD.gameObject.SetActive(true);

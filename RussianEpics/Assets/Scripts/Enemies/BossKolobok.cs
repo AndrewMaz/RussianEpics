@@ -1,11 +1,12 @@
 using Abstracts;
+using Assets.Scripts.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BossKolobok : Enemy
+public class BossKolobok : Boss
 {
     [SerializeField] private float _minForce = 100f;
     [SerializeField] private float _maxForce = 1000f;
@@ -15,6 +16,14 @@ public class BossKolobok : Enemy
 
     private bool _shouldJump = true;
     private float _speed = 1f;
+
+    private KolobokEvent _event;
+    public override SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer, DialogueSystem dialogueSystem, PlayerStats playerStats)
+    {
+        _event = new(dialogueSystem);
+
+        return base.Initialize(scoreSystem, speedControlService, timer, dialogueSystem, playerStats);
+    }
 
     void Start()
     {
@@ -27,6 +36,11 @@ public class BossKolobok : Enemy
             Jump(_minForce, _maxForce);
             _shouldJump = false;
         }
+    }
+    private new void OnEnable()
+    {
+        SetEventItem(_event);
+        base.OnEnable();
     }
     public override void GetDamage(int damage, object sender)
     {

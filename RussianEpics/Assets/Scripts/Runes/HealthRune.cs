@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthRune : Rune
 {
-    [SerializeField] int healAmount;
+    [SerializeField] private int _healAmount;
 
-    public int HealAmount { get { return healAmount; } private set {; } }
+    public int HealAmount { get { return _healAmount; } private set {; } }
 }

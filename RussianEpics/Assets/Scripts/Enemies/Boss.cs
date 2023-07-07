@@ -1,8 +1,11 @@
 using Abstracts;
 using Assets.Scripts.Interfaces;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
-public class NPC : SpawnElement, IEventable
+public class Boss : Enemy, IEventable
 {
     private Event _eventItem;
     public void SetEventItem(Event eventItem)

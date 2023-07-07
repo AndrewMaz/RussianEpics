@@ -7,7 +7,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EventsSystem : MonoBehaviour
+public class DialogueSystem : MonoBehaviour
 {
     private Dialogue _dialogue;
     private SpeedControlService _speedControlService;

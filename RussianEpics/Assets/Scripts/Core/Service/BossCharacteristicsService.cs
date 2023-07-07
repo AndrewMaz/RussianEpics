@@ -7,10 +7,10 @@ public class BossCharacteristicsService
     public event Action IsDead;
 
     private EnemyChecker _enemyChecker;
-    private EventsSystem _eventsSystem;
+    private DialogueSystem _eventsSystem;
 
     private Enemy _boss;
-    public BossCharacteristicsService(EnemyChecker enemyChecker, EventsSystem eventsSystem)
+    public BossCharacteristicsService(EnemyChecker enemyChecker, DialogueSystem eventsSystem)
     {
         _enemyChecker = enemyChecker;
         _eventsSystem = eventsSystem;

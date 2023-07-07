@@ -1,33 +1,37 @@
 using Abstracts;
+using Assets.Scripts.Interfaces;
 using System.Collections.Generic;
 
 public class EventService
 {
-    private EventsSystem _eventsSystem;
+    private DialogueSystem _dialogueSystem;
     private ScoreSystem _scoreSystem;
 
     private List<Event> _allEvents = new();
     private List<Event> _finishedEvents = new();
 
-    Event _event;
-    public EventService(EventsSystem eventsSystem, ScoreSystem scoreSystem, Event[] events)
+    private Event _event;
+    public EventService(DialogueSystem dialogueSystem, ScoreSystem scoreSystem)
     {
-        _eventsSystem = eventsSystem;
+        _dialogueSystem = dialogueSystem;
         _scoreSystem = scoreSystem;
-        AddEvents(events);
 
-        _scoreSystem.OnThreshold += InvokeEvent;
+        //_scoreSystem.OnThreshold += InvokeEvent;
     }
-    private void StartDialogue(Event eventItem)
+    public void StartEvent(IEventable eventItem)
     {
-        _event = eventItem;
-        _eventsSystem.SetDialogue(eventItem);
+        var newEvent = eventItem.GetEvent();
+        if (newEvent == null) 
+            return;
+
+        _event = newEvent;
+        _event.Start();
     }
     private void EndEvent()
     {       
-        _eventsSystem.SetDialogue(_event);
+        _dialogueSystem.SetDialogue(_event);
     }
-    public void InvokeEvent()
+/*    public void InvokeEvent()
     {
         foreach (var eventItem in _allEvents)
         {
@@ -39,24 +43,17 @@ public class EventService
             eventItem.Start();
             break;
         }
-    }
+    }*/
     private void ResetList()
     {
         _finishedEvents.Clear();
-    }
-    public void AddEvents(Event[] eventArray)
-    {
-        foreach (var eventItem in eventArray)
-        {
-            _allEvents.Add(eventItem);
-        }
     }
     public void AddFinishedEvent(Event eventItem)
     {
         _finishedEvents.Add(eventItem);
     }
-    ~EventService() 
+/*    ~EventService() 
     {
         _scoreSystem.OnThreshold -= InvokeEvent;
-    }
+    }*/
 }

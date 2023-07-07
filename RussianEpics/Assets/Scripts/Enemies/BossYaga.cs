@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using System;
 using UnityEngine;
 
-public class BossYaga : Enemy
+public class BossYaga : Boss
 {
     [SerializeField] private int _startHealth = 5;
     [SerializeField] private Transform _model;
@@ -14,6 +14,13 @@ public class BossYaga : Enemy
     private float _invTimer;
     private bool _isInvulnerable;
 
+    private YagaEvent _event;
+    public override SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer, DialogueSystem dialogueSystem, PlayerStats playerStats)
+    {
+        _event = new(dialogueSystem);
+
+        return base.Initialize(scoreSystem, speedControlService, timer, dialogueSystem, playerStats);
+    }
     //X (-2, 2);
     //Y (-1, 3);
     private void Start()
@@ -27,6 +34,12 @@ public class BossYaga : Enemy
         {
             MakeInvulnerable();
         }
+    }
+
+    private new void OnEnable()
+    {
+        SetEventItem(_event);
+        base.OnEnable();
     }
     public override void GetDamage(int damage, object sender)
     {

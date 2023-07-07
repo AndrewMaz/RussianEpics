@@ -464,7 +464,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 26b948a568694221828c044d3d7910f0, type: 3}
   - {fileID: 21300000, guid: b1b5c9a5fa67631489e56bb4ddceeefa, type: 3}
   - {fileID: 21300000, guid: 88fbaca5a024482ca9f20030c35b9d24, type: 3}
-  - {fileID: 21300000, guid: f573dca593f04a9cb65d6649e881714c, type: 3}
   - {fileID: 21300000, guid: f5a429b57e2b3624595657c341b43ccb, type: 3}
   - {fileID: 21300000, guid: 7fe0e1c5cfbb4ba284a2ea2f49e96dc1, type: 3}
   - {fileID: 21300000, guid: 53eb7cc514664b1eb0154aad1e874fbe, type: 3}
@@ -1624,7 +1623,6 @@ SpriteAtlas:
   - SamuraiSword2
   - StormBringerArmor
   - SteelHelm [Paint]
-  - "\u041A\u043E\u043B\u043E\u0431\u043E\u043A"
   - Wanderer
   - Militiaman
   - FireKnightArmor [Paint]

@@ -19,7 +19,7 @@ namespace Abstracts
         private ScoreSystem _scoreSystem;
         private SpeedControlService _speedControlService;
         private Timer _timer;
-        public virtual SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer)
+        public virtual SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer, DialogueSystem dialogueSystem, PlayerStats playerStats)
         {
             _scoreSystem = scoreSystem;
             _speedControlService = speedControlService;

@@ -7,6 +7,7 @@ public class BossHUD : MonoBehaviour
 {
     [SerializeField] Slider _slider;
     [SerializeField] TextMeshProUGUI _bossName;
+    [SerializeField] TextMeshProUGUI _percentageText;
 
     private float currenntHealth, maxHealth;
     private void Awake()
@@ -34,6 +35,7 @@ public class BossHUD : MonoBehaviour
     {
         currenntHealth = health;
         _slider.value = currenntHealth / maxHealth;
+        _percentageText.text = currenntHealth.ToString();
     }
     public void ActivateUI(Enemy boss)
     {

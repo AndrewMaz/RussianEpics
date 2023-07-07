@@ -18,7 +18,7 @@ public class ChunkSpawner : MonoBehaviour
     private Queue<Chunk> _chunkFeed = new();
     private List<List<Chunk>> _chunkSets = new();
 
-    private int _currentStage = 0;
+    private int _currentStage = 0, _currentEvent = 0;
 
     public bool IsGameStarted { get; set; } = false;
 
@@ -26,19 +26,31 @@ public class ChunkSpawner : MonoBehaviour
     private SpeedControlService _speedControlService;
     private BossCharacteristicsService _bossCharacteristicsService;
     private Timer _timer;
+    private DialogueSystem _dialogueSystem;
+    private PlayerStats _playerStats;
     private void Start()
     {
         SpawnNextChunk();
         _chunkSets.Add(_chunks1);
         _chunkSets.Add(_chunks2);
     }
-    public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer)
+    public void Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer, DialogueSystem dialogueSystem, PlayerStats playerStats)
     {
         _scoreSystem = scoreSystem;
         _speedControlService = speedControlService;
         _timer = timer;
+        _dialogueSystem = dialogueSystem;
+        _playerStats = playerStats;
 
         enabled = true;
+    }
+    private void OnEnable()
+    {
+        _scoreSystem.OnThreshold += HandleEvent;
+    }
+    private void OnDisable()
+    {
+        _scoreSystem.OnThreshold -= HandleEvent;
     }
     public void StartGame()
     {
@@ -58,17 +70,19 @@ public class ChunkSpawner : MonoBehaviour
             _chunkFeed.Enqueue(chunk);
         }
     }
-    public void HandleEvent(Event eventItem)
+    public void HandleEvent()
     {
         _chunkFeed.Clear();
-        foreach (var chunk in _eventChunks)
+        _chunkFeed.Enqueue(_eventChunks[_currentEvent]);
+        _currentEvent++;
+/*        foreach (var chunk in _eventChunks)
         {
             if (chunk.name == eventItem.GetType().ToString())
             {
                 _chunkFeed.Enqueue(chunk);
                 break;
             }
-        }
+        }*/
         SetNewChunks(_chunkSets[_currentStage]);
         FillChunkFeed();
     }
@@ -114,7 +128,7 @@ public class ChunkSpawner : MonoBehaviour
                 instantiate.transform.position =
                     new Vector3(lastTransform.position.x + x, lastTransform.position.y + y, 0.0f);
                 var spElement = instantiate.GetComponent<SpawnElement>();
-                spElement.Initialize(_scoreSystem, _speedControlService, _timer).SetStage(_currentStage);
+                spElement.Initialize(_scoreSystem, _speedControlService, _timer, _dialogueSystem, _playerStats).SetStage(_currentStage);
              
             }
         }
@@ -126,7 +140,7 @@ public class ChunkSpawner : MonoBehaviour
 
         if (IsGameStarted)
         {
-            instantiate1.GetComponent<SpawnElement>().Initialize(_scoreSystem, _speedControlService, _timer);
+            instantiate1.GetComponent<SpawnElement>().Initialize(_scoreSystem, _speedControlService, _timer, _dialogueSystem, _playerStats);
         }
     }
 }
