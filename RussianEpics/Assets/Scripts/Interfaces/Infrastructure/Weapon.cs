@@ -13,8 +13,18 @@ namespace Assets.Scripts.Interfaces.Infrastructure
         public float ShootingMinDistance => _shootingMinDistance;
         public float Force => _force;
 
+        PlayerStats _playerStats;
+
         public event Action OnDequeue;
         
+        public void Initialize(PlayerStats playerStats)
+        {
+            _playerStats = playerStats;
+        }
+        protected int GetLvl(WeaponRune rune)
+        {
+            return _playerStats.GetLvl(rune.GetType().ToString());
+        }
         protected void DequeueInvoke()
         {
             OnDequeue?.Invoke();

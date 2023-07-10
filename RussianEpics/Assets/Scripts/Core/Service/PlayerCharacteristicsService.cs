@@ -16,6 +16,7 @@ public class PlayerCharacteristicsService
 
     public event Action IsPlayerDead;
     public event Action<int> IsPlayerDamaged;
+    public event Action<int> OnPlayerHealthChange;
 
     public PlayerCharacteristicsService(Weapon weapon, SpeedControlService speedControlService, int maxHealth, PlayerHUD playerHUD, ScoreSystem scoreSystem, PlayerStats playerStats) // armor // 
     {
@@ -33,7 +34,7 @@ public class PlayerCharacteristicsService
         switch (rune)
         {
             case HealthRune healthRune:  // BuffRune
-                Heal((float)_playerStats.GetLvl(healthRune.GetType().ToString()) / 10f);
+                Heal(_playerStats.GetLvl(healthRune.GetType().ToString()) / 10f);
                 break;
             case WeaponRune arrowRune: // boostRune
                 _weapon.ApplyRune(arrowRune);
@@ -56,6 +57,7 @@ public class PlayerCharacteristicsService
     public void GetDamage(int damage, object sender)
     {
         _currentHealth -= damage;
+        OnPlayerHealthChange?.Invoke(_currentHealth);
         IsPlayerDamaged?.Invoke(_currentHealth);
 
         if (_currentHealth < 0)
@@ -68,15 +70,7 @@ public class PlayerCharacteristicsService
     {
         _maxHealth += amount;
         _currentHealth += amount;
-    }
-    private void Heal(float multiplier)
-    {
-        _currentHealth += (int)(_maxHealth * multiplier);
-        if (_currentHealth > _maxHealth) 
-        {
-            _currentHealth = _maxHealth;
-        }
-        IsPlayerDamaged?.Invoke(_currentHealth);
+        OnPlayerHealthChange?.Invoke(_currentHealth);
     }
     public void SubscribeToWeapon(Action methodName)
     {
@@ -85,5 +79,14 @@ public class PlayerCharacteristicsService
     public void UnsibscribeToWeapon(Action methodName)
     {
         _weapon.OnDequeue -= methodName;
+    }
+    private void Heal(float multiplier)
+    {
+        _currentHealth += (int)(_maxHealth * multiplier);
+        if (_currentHealth > _maxHealth)
+        {
+            _currentHealth = _maxHealth;
+        }
+        OnPlayerHealthChange?.Invoke(_currentHealth);
     }
 }

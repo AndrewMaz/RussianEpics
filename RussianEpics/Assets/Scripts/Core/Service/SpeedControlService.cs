@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class SpeedControlService : MonoBehaviour
 {
-    [SerializeField] float _timeToChangeSpeed = 3f;
-
     private float _multiply;
 
     public event Action? OnSpeedChange;
@@ -25,10 +23,10 @@ public class SpeedControlService : MonoBehaviour
     {
         StopSpeed();
     }
-    public void ChangeSpeed()
+    public void ChangeSpeed(float duration)
     {
         Multiply = 0.5f;
-        StartCoroutine(SpeedChangeDuration());
+        StartCoroutine(SpeedChangeDuration(duration));
     }
     public void StopSpeed()
     {
@@ -38,9 +36,9 @@ public class SpeedControlService : MonoBehaviour
     {
         Multiply = 1.0f;
     }
-    private IEnumerator SpeedChangeDuration()
+    private IEnumerator SpeedChangeDuration(float duration)
     {
-        yield return new WaitForSeconds(_timeToChangeSpeed);
+        yield return new WaitForSeconds(duration);
 
         Multiply = 1f;
     }

@@ -43,7 +43,7 @@ public class PlayerHUD : MonoBehaviour, IPlayerInput
         foreach (var characteristic in _playerCharacteristics) 
         {
             characteristic.SubscribeToWeapon(RemoveFromHUD);
-            characteristic.IsPlayerDamaged += Damaged;
+            characteristic.OnPlayerHealthChange += UpdateHealthBar;
         }
     }
     private void OnDisable()
@@ -53,14 +53,14 @@ public class PlayerHUD : MonoBehaviour, IPlayerInput
         foreach (var characteristic in _playerCharacteristics)
         {
             characteristic.UnsibscribeToWeapon(RemoveFromHUD);
-            characteristic.IsPlayerDamaged -= Damaged;
+            characteristic.OnPlayerHealthChange -= UpdateHealthBar;
         }
     }
     private void OnJump()
     {
         IsJumped?.Invoke();
     }
-    private void Damaged(int currentHealth)
+    private void UpdateHealthBar(int currentHealth)
     {
         _healthSlider.value = currentHealth / _maxHealth;
         _percentageText.text = currentHealth.ToString();

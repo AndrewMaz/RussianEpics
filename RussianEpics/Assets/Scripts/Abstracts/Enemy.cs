@@ -62,16 +62,16 @@ namespace Abstracts
         {
             IsDamaged?.Invoke(value);
         }
-        protected virtual void OnDamageDealt(IDamageable target)
-        {
-            target.GetDamage(_damage, this);
-        }
         public virtual void GetDamage(int damage, object sender)
         {
             SetAnimatorTrigger("takeDamage");
             SetRbStatic();
             AddColiderOffset(Vector2.down);
             AddPoints(this);
+        }
+        protected virtual void OnDamageDealt(IDamageable target)
+        {
+            target.GetDamage(_damage, this);
         }
         public virtual void React()
         {
@@ -109,7 +109,6 @@ namespace Abstracts
         {
             _isAlive = false;
         }
-
         public float GetPoints()
         {
             return _points;
