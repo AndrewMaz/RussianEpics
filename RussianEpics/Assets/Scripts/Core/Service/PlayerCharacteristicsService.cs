@@ -46,7 +46,7 @@ public class PlayerCharacteristicsService
                 _speedControlService.ChangeSpeed(_playerStats.GetLvl(slowRune.GetType().ToString()) * 2 + 1);
                 break;
             case MaxHealthRune maxHealthRune:
-                IncreaseHealth(maxHealthRune.HealthAmount); 
+                IncreaseHealth(_playerStats.GetLvl(maxHealthRune.GetType().ToString()) * maxHealthRune.HealthAmount); 
                 break;
         }
     }
@@ -60,7 +60,7 @@ public class PlayerCharacteristicsService
         OnPlayerHealthChange?.Invoke(_currentHealth);
         IsPlayerDamaged?.Invoke(_currentHealth);
 
-        if (_currentHealth < 0)
+        if (_currentHealth <= 0)
         {
             _speedControlService.StopSpeed();
             IsPlayerDead?.Invoke();

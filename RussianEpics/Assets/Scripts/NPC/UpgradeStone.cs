@@ -13,13 +13,14 @@ public class UpgradeStone : NPC
 
     public override SpawnElement Initialize(ScoreSystem scoreSystem, SpeedControlService speedControlService, Timer timer, DialogueSystem dialogueSystem, PlayerStats playerStats)
     {
-        _event = new(GetItem(), playerStats);
+        _event = new(GetItem(), playerStats, dialogueSystem);
 
         return base.Initialize(scoreSystem, speedControlService, timer, dialogueSystem, playerStats);
     }
     private Rune GetItem()
     {
-        int randNumber = Random.Range(0, _upgradeItems.Length - 1);
+        int randNumber = Random.Range(0, _upgradeItems.Length);
+
         _upgradeSprite.sprite = _sprites[randNumber];
 
         return _upgradeItems[randNumber];

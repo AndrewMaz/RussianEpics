@@ -11,9 +11,9 @@ public class PlayerStats : MonoBehaviour
     Dictionary<string, int> _levels= new()
     {
         //Runes
-        { "HealthRune", 0 },
-        {"MaxHealthRune", 0 },
-        {"TripleShotRune", 0 },
+        { "HealthRune", 1 },
+        {"MaxHealthRune", 1 },
+        {"TripleShotRune", 1 },
         {"ExplosionRune", 0 },
         {"SlowRune", 0 },
         //Player
@@ -33,7 +33,7 @@ public class PlayerStats : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S)) 
         {
-            Upgrade("TripleShotRune");
+            Upgrade("ExplosionRune");
         }
     }
     public int GetLvl(string type)

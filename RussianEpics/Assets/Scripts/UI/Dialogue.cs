@@ -43,13 +43,13 @@ public class Dialogue : MonoBehaviour
     {
         _lines.Add(line);
     }
-    public void StartDialogue(string bossName)
+    public void StartDialogue(string eventName)
     {
         index = 0;
         _panel.SetActive(true);
         foreach (var sprite in _sprites)
         {
-            if (bossName.Contains(sprite.name))
+            if (eventName.Contains(sprite.name))
             {
                 _anotherImage.sprite = sprite;
                 break;

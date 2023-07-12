@@ -14,7 +14,7 @@ public class Arrow : MonoBehaviour, IDamageable
     protected bool isRotating = true;
 
     protected Rigidbody2D _rb;
-    private void Awake()
+    public void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }

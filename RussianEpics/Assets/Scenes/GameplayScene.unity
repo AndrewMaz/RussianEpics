@@ -159,9 +159,17 @@ MonoBehaviour:
   _hammerWeapon: {fileID: 1042494221}
   _trajectory: {fileID: 1497035318}
   _thresholds:
-  - 10
-  - 30
   - 50
+  - 80
+  - 120
+  - 200
+  - 230
+  - 260
+  - 290
+  - 490
+  - 520
+  - 550
+  - 580
   _playerSprites:
   - {fileID: 21300000, guid: 540b0e5c09a19ac47a240a4d2e4a7a2f, type: 3}
   - {fileID: 21300000, guid: 92b1e02f8a26fa546ae1ce430a6d4801, type: 3}
@@ -2020,6 +2028,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ece2a58b75a686f4f99b4ece53c5e92e, type: 3}
   - {fileID: 21300000, guid: f573dca593f04a9cb65d6649e881714c, type: 3}
   - {fileID: 21300000, guid: 0b627c52f0e71764fbb025fae6b0c24e, type: 3}
+  - {fileID: 21300000, guid: 8364da2818d5d514a95abe017b2651ad, type: 3}
 --- !u!1 &538159873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ece2a58b75a686f4f99b4ece53c5e92e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3828,7 +3837,15 @@ MonoBehaviour:
   _chunks:
   - {fileID: 11400000, guid: bac99ad84526a7342ad6a13297f2724a, type: 2}
   _eventChunks:
+  - {fileID: 11400000, guid: 614df3286a412e049a62be27f5293664, type: 2}
   - {fileID: 11400000, guid: c5032dcebebcd7f4fa33805e2381a250, type: 2}
+  - {fileID: 11400000, guid: 41433ee17b28e9f4684d76b1af3027f3, type: 2}
+  - {fileID: 11400000, guid: c5032dcebebcd7f4fa33805e2381a250, type: 2}
+  - {fileID: 11400000, guid: e3fb5f166dff31e43b0134536dff0efb, type: 2}
+  - {fileID: 11400000, guid: c5032dcebebcd7f4fa33805e2381a250, type: 2}
+  - {fileID: 11400000, guid: 9143324611d87104dab422f053214b76, type: 2}
+  - {fileID: 11400000, guid: c5032dcebebcd7f4fa33805e2381a250, type: 2}
+  - {fileID: 11400000, guid: e3fb5f166dff31e43b0134536dff0efb, type: 2}
   - {fileID: 11400000, guid: c5032dcebebcd7f4fa33805e2381a250, type: 2}
   - {fileID: 11400000, guid: c5032dcebebcd7f4fa33805e2381a250, type: 2}
   _chunkEnd: {fileID: 3474207742664579938, guid: d7813a81b14629b42b793b6b0d1c3b6b, type: 3}
@@ -3839,8 +3856,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29857a637827f4748a3808a1a3e0427e, type: 2}
   - {fileID: 11400000, guid: 1081c2a8f5088d046b0cf9d349cad2b1, type: 2}
   - {fileID: 11400000, guid: a77106f9a66393146a49af956b557bd3, type: 2}
-  - {fileID: 11400000, guid: 37678cfdfa615214892c031f42b63807, type: 2}
-  - {fileID: 11400000, guid: e3fb5f166dff31e43b0134536dff0efb, type: 2}
   _chunks2:
   - {fileID: 11400000, guid: 662c31e225d0a71498e5013c060c80de, type: 2}
   - {fileID: 11400000, guid: a4c0440ae007f304988da0e339b26cc1, type: 2}

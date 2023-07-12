@@ -2,6 +2,7 @@ using Abstracts;
 using Assets.Scripts.Interfaces.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using UnityEngine;
 
@@ -25,14 +26,10 @@ public class Quiver : Weapon
             switch(arrowRune) 
             {
                 case ExplosionRune rune:
-                    InstantiateArrow(firePosition, Force * time, rune.arrow.gameObject);
+                    InstantiateArrow(firePosition, Force * time, rune.arrow.gameObject, rune);
                     break;
 
                 case TripleShotRune rune:
-/*                    InstantiateArrow(firePosition + Vector2.up, Force * time, rune.arrow.gameObject);
-                    InstantiateArrow(firePosition, Force * time , rune.arrow.gameObject);
-                    InstantiateArrow(firePosition + Vector2.down, Force * time, rune.arrow.gameObject);*/
-
                     RepeatAction(firePosition, time, rune, GetLvl(rune));
                     break;
             }
@@ -51,6 +48,14 @@ public class Quiver : Weapon
         var instance = Instantiate(arrowPrefab, gameObject.transform.position, gameObject.transform.rotation);
         if (instance.TryGetComponent(out Arrow arrow))
             arrow.Fly(transform.position, firePosition, force);
+    }
+    private void InstantiateArrow(Vector2 firePosition, float force, GameObject arrowPrefab, WeaponRune rune)
+    {
+        var instance = Instantiate(arrowPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        if (instance.TryGetComponent(out Arrow arrow))
+            arrow.Fly(transform.position, firePosition, force);
+        if (instance.TryGetComponent(out ExplosionArrow explosionArrow))
+            explosionArrow.ChangeRadius(GetLvl(rune));
     }
     private void RepeatAction(Vector2 firePosition, float time, WeaponRune rune, int counter)
     {

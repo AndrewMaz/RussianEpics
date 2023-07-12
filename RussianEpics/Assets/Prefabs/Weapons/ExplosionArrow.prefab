@@ -5082,8 +5082,9 @@ MonoBehaviour:
   _damageArea: {fileID: 2513466932286496473}
   _animator: {fileID: 0}
   _deflectChance: 0
-  explosionDamageArea: {fileID: 5542676496673711746}
-  arrowParticle: {fileID: 7263429649613436527}
+  _explosionDamageArea: {fileID: 5542676496673711746}
+  _arrowParticle: {fileID: 7263429649613436527}
+  _explosionParticle: {fileID: 1374861788474413851}
 --- !u!1 &5328496452333438802
 GameObject:
   m_ObjectHideFlags: 0

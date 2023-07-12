@@ -72,17 +72,14 @@ public class ChunkSpawner : MonoBehaviour
     }
     public void HandleEvent()
     {
+        if (_currentStage == 0) 
+        {
+            HandleIndex();
+        }
         _chunkFeed.Clear();
         _chunkFeed.Enqueue(_eventChunks[_currentEvent]);
         _currentEvent++;
-/*        foreach (var chunk in _eventChunks)
-        {
-            if (chunk.name == eventItem.GetType().ToString())
-            {
-                _chunkFeed.Enqueue(chunk);
-                break;
-            }
-        }*/
+
         SetNewChunks(_chunkSets[_currentStage]);
         FillChunkFeed();
     }

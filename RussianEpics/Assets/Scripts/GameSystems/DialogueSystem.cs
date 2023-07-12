@@ -32,6 +32,7 @@ public class DialogueSystem : MonoBehaviour
     {
         if (!File.Exists(Application.streamingAssetsPath + "/Dialogues/" + eventItem.GetType().ToString() + ".txt"))
         {
+            Debug.Log("Dialogue System: 404");
             return;
         }
         string readFromFilePath = Application.streamingAssetsPath + "/Dialogues/" + eventItem.GetType().ToString() + ".txt";
