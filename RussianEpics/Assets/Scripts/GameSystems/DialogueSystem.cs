@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -30,14 +29,15 @@ public class DialogueSystem : MonoBehaviour
     }
     public void SetDialogue(Event eventItem)
     {
-        if (!File.Exists(Application.streamingAssetsPath + "/Dialogues/" + eventItem.GetType().ToString() + ".txt"))
+        string readFromFilePath = Path.Combine(Application.streamingAssetsPath, "Dialogues", eventItem.GetType().ToString() + ".txt");
+        
+        var text = Utility.ReadAllTextFromFileStreamingAssets(readFromFilePath);
+        if (string.IsNullOrEmpty(text)) 
         {
-            Debug.Log("Dialogue System: 404");
             return;
         }
-        string readFromFilePath = Application.streamingAssetsPath + "/Dialogues/" + eventItem.GetType().ToString() + ".txt";
 
-        List<string> fileLines = File.ReadAllLines(readFromFilePath).ToList();
+        List<string> fileLines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
         int i;
 

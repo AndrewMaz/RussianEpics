@@ -35,7 +35,6 @@ public class BossYaga : Boss
             MakeInvulnerable();
         }
     }
-
     private new void OnEnable()
     {
         SetEventItem(_event);
