@@ -8,11 +8,19 @@ public class CameraAdjuster : MonoBehaviour
     void Start()
     {
         float ratio = (float)Screen.width / Screen.height;
+
         if (ratio == _defaultRatio) return;
 
+        float difference = _defaultRatio / ratio;
+
+        if (ratio > _defaultRatio)
+        {
+            difference = -difference;
+        }
         Camera camera = GetComponent<Camera>();
 
-        camera.orthographicSize += _defaultRatio / ratio;
-        transform.position = new Vector3(transform.position.x, transform.position.y + _defaultRatio / ratio, transform.position.z);
+
+        camera.orthographicSize += difference;
+        transform.position = new Vector3(transform.position.x, transform.position.y + difference, transform.position.z);
     }
 }
