@@ -8,6 +8,7 @@ public class EnemyChecker : MonoBehaviour
     public event Action<NPC> OnEventShowed;
     private EventService _eventService;
 
+
     public void Initialize(EventService eventService)
     {
         _eventService= eventService;

@@ -82,6 +82,6 @@ public class BossKolobok : Boss
         SetSpeed(-3f);
         SetRbStatic();
         SwitchColider(false);
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 2f);
     }
 }

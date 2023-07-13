@@ -14,9 +14,11 @@ public class Arrow : MonoBehaviour, IDamageable
     protected bool isRotating = true;
 
     protected Rigidbody2D _rb;
+    private Motor _motor;
     public void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _motor = GetComponent<Motor>();
     }
 
     public void Fly(Vector2 from, Vector2 to, float force)
@@ -60,7 +62,7 @@ public class Arrow : MonoBehaviour, IDamageable
 
     public void GetDamage(int damage, object sender)
     {
-        if ((sender is Ghoul && Random.value < _deflectChance/100) || (sender is Kolobok && _deflectChance > 0))
+        if ((sender is Ghoul && Random.value < _deflectChance / 100) || (sender is Kolobok && _deflectChance > 0))
         {
             Deflect();
         }
@@ -71,13 +73,15 @@ public class Arrow : MonoBehaviour, IDamageable
         _animator.SetTrigger("deflected");
         _damageArea.gameObject.SetActive(false);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Floor _))
+        if (collision.gameObject.TryGetComponent(out Floor floor))
         {
             _rb.bodyType = RigidbodyType2D.Static;
             isRotating = false;
             _damageArea.gameObject.SetActive(false);
+            _motor.Speed = 0f;
+            gameObject.transform.parent = floor.transform;
 
             return;
         }

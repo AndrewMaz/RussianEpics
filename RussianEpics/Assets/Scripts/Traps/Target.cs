@@ -6,12 +6,14 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     [SerializeField] Rigidbody2D platform;
+    [SerializeField] GameObject _targetModel;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Arrow _) || collision.gameObject.TryGetComponent(out Hammer _))
         {
             platform.bodyType = RigidbodyType2D.Dynamic;
+            _targetModel.SetActive(false);
         }
     }
 }

@@ -26,7 +26,7 @@ public class ExplosionArrow : Arrow
         var explosionShape = _particleSystem.shape;
         explosionShape.radius = _baseParticleRadius + lvl / 15f;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private new void OnCollisionEnter2D(Collision2D collision)
     {
         _explosionDamageArea.gameObject.SetActive(true);
         _arrowParticle.SetActive(false);
@@ -36,5 +36,7 @@ public class ExplosionArrow : Arrow
         _damageArea.gameObject.SetActive(false);
 
         _explosionDamageArea.IsDamageDealt += OnIsDamageDealt;
+
+        base.OnCollisionEnter2D(collision);
     }
 }
