@@ -66,6 +66,7 @@ namespace Abstracts
         {
             SetAnimatorTrigger("takeDamage");
             SetRbStatic();
+            SwitchColider(false);
             AddColiderOffset(Vector2.down);
             AddPoints(this);
         }

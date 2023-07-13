@@ -43,6 +43,7 @@ public class BossHUD : MonoBehaviour
         currenntHealth = boss.Health;
         maxHealth = boss.Health;
         _bossName.text = boss.Name;
+        _percentageText.text = currenntHealth.ToString();
     }
     public void DeactivateUI()
     {
