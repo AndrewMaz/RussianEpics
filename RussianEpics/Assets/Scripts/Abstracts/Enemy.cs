@@ -47,12 +47,12 @@ namespace Abstracts
             _rb = GetComponent<Rigidbody2D>();
             _capsuleCollider = GetComponent<CapsuleCollider2D>();
         }
-        private new void OnEnable()
+        protected new void OnEnable()
         {
             base.OnEnable();
             _damageArea.IsDamageDealt += OnDamageDealt;
         }
-        private new void OnDisable()
+        protected new void OnDisable()
         {
             base.OnDisable();
             IsDead?.Invoke();

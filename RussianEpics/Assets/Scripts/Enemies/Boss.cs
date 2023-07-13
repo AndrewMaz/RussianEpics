@@ -12,4 +12,8 @@ public class Boss : Enemy, IEventable
     {
         return _eventItem;
     }
+    protected new void OnEnable()
+    {
+        base.OnEnable();
+    }
 }
