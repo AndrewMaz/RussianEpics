@@ -2,7 +2,7 @@ using Abstracts;
 using System;
 using UnityEngine;
 
-public class Kolobok : Enemy
+public class RollingBird : Enemy
 {
     [SerializeField] private float newSpeed = 5f;
 
