@@ -33,10 +33,18 @@ public class ExplosionArrow : Arrow
 
         isRotating = false;
         _rb.bodyType = RigidbodyType2D.Static;
-        _damageArea.gameObject.SetActive(false);
+        SwitchDamageArea(false);
 
         _explosionDamageArea.IsDamageDealt += OnIsDamageDealt;
 
-        base.OnCollisionEnter2D(collision);
+        if (collision.gameObject.TryGetComponent(out Floor floor))
+        {
+            _rb.bodyType = RigidbodyType2D.Static;
+            isRotating = false;
+            StopSpeed();
+            gameObject.transform.parent = floor.transform;
+
+            return;
+        }
     }
 }

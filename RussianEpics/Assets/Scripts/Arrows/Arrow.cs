@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Arrow : MonoBehaviour, IDamageable
 {
-    [SerializeField] protected DamageArea _damageArea;
+    [SerializeField] private DamageArea _damageArea;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _deflectChance;
 
@@ -59,7 +59,10 @@ public class Arrow : MonoBehaviour, IDamageable
     {
         target.GetDamage(damage, this);
     }
-
+    protected void SwitchDamageArea(bool value)
+    {
+        _damageArea.gameObject.SetActive(value);
+    }
     public void GetDamage(int damage, object sender)
     {
         if ((sender is Ghoul && Random.value < _deflectChance / 100) || (sender is Kolobok && _deflectChance > 0))
@@ -73,6 +76,10 @@ public class Arrow : MonoBehaviour, IDamageable
         _animator.SetTrigger("deflected");
         _damageArea.gameObject.SetActive(false);
     }
+    public void StopSpeed()
+    {
+        _motor.Speed = 0;
+    }
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Floor floor))
@@ -80,7 +87,7 @@ public class Arrow : MonoBehaviour, IDamageable
             _rb.bodyType = RigidbodyType2D.Static;
             isRotating = false;
             _damageArea.gameObject.SetActive(false);
-            _motor.Speed = 0f;
+            StopSpeed();
             gameObject.transform.parent = floor.transform;
 
             return;

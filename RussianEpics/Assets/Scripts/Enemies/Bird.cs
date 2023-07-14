@@ -26,6 +26,7 @@ public class Bird : Enemy
         SetAnimatorTrigger("takeDamage");
         AddColiderOffset(Vector2.up);
         SetRbDinamic();
+        StopAllCoroutines();
         SetSpeed(_startSpeed);
         SetDead();
         AddPoints(this);

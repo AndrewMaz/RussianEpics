@@ -277,5 +277,5 @@ MonoBehaviour:
   _minForce: 15000
   _maxForce: 25000
   _jumpChance: 75
-  _lifeTime: 13
+  _lifeTime: 14.5
   jumpInterval: 2

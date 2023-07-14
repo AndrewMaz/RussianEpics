@@ -19,6 +19,8 @@ public class CameraAdjuster : MonoBehaviour
         }
         Camera camera = GetComponent<Camera>();
 
+        /*Debug.Log(Screen.width);
+        Debug.Log(Screen.height);*/
 
         camera.orthographicSize += difference;
         transform.position = new Vector3(transform.position.x, transform.position.y + difference, transform.position.z);
